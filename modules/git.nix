@@ -15,7 +15,8 @@
 
       extraConfig = {
         core = {
-          editor = "nvim";
+          editor = "${pkgs.neovim}/bin/nvim";
+	  sshCommand = "/usr/bin/ssh";
         };
         format = {
           pretty = "format:%C(yellow)%h %Cblue%>(20)%ad %Cgreen%<(15)%aN%Cred%d %Creset%s";

@@ -5,6 +5,8 @@ let
     ../modules/fish.nix
     ../modules/git.nix
     ../modules/home-manager.nix
+    ../modules/neovim.nix
+    ../modules/tmux.nix
   ];
 
 in {
@@ -13,7 +15,7 @@ in {
   home.username = "onno";
   home.homeDirectory = "/Users/onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "21.11";
+  home.stateVersion = "21.05";
 
   home.packages = with pkgs; [
     aria2
@@ -41,7 +43,7 @@ in {
     parallel
     pipenv
     python3
-    ripgrep
+    python3Packages.pip
     ripgrep
     rsync 
     rustc

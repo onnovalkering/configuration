@@ -18,19 +18,36 @@
       };
 
       shellAliases = {
+	ping = "ping -c 5";
+	pingf = "ping -c 100 -i .2";
         cp = "cp --interactive --verbose";
-        diff = "colordiff"
+        diff = "colordiff";
         grep = "rg --line-number --color=auto";
-        ls = "ls -l --classify --human-readable --color=auto";
         la = "ls -l --classify --human-readable --color=auto --almost-all";
+        ls = "ls -l --classify --human-readable --color=auto";
         mkdir = "mkdir --parents --verbose";
         mv = "mv --interactive --verbose";
 
-        # TODO:
-        # - cargo
-        # - git
-        # - kubectl
-        # - tmux
+	cb = "cargo build";
+	ch = "cargo check";
+	cr = "cargo run";
+	ct = "cargo test";
+	cu = "cargo update";
+	cy = "cargo clippy";
+
+	ga = "git add";
+	gb = "git branch";
+	gc = "git commit";
+	gd = "git diff";
+	gl = "git log --graph";
+	gm = "git merge";
+	gs = "git status";
+	gt = "git tag";
+	gt-d = "git tag --delete";
+	gu = "git push origin";
+
+	ta = "tmux attach";
+	tk = "tmux kill-session -t";
       };
 
       functions = {

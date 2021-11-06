@@ -26,6 +26,7 @@ in {
     coreutils
     findutils
     gawk
+    gnupg
     gnumake
     gnused
     gnutar
@@ -45,6 +46,7 @@ in {
     python3
     python3Packages.pip
     ripgrep
+    rclone
     rsync 
     rustc
     speedtest-cli

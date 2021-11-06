@@ -41,6 +41,7 @@
 	gd = "git diff";
 	gl = "git log --graph";
 	gm = "git merge";
+	gp = "git pull";
 	gs = "git status";
 	gt = "git tag";
 	gt-d = "git tag --delete";

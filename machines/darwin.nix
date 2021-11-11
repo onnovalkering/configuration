@@ -45,7 +45,7 @@ in {
     pipenv
     python3
     python3Packages.pip
-#    ripgrep
+    ripgrep
     rclone
     rsync 
     rustc

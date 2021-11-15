@@ -20,6 +20,7 @@ in {
 
   home.packages = with pkgs; [
     aria2
+    bat
     calc
     cargo
     cmake
@@ -27,8 +28,9 @@ in {
     coreutils
     findutils
     gawk
-    gnupg
+    gcc
     gnumake
+    gnupg
     gnused
     gnutar
     grpcurl
@@ -53,4 +55,6 @@ in {
     speedtest-cli
     sqlite
   ];
+
+ # home.file.".config/nvim/lua".source = ../modules/files/nvim/lua;
 }

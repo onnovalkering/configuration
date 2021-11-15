@@ -5,6 +5,7 @@ let
     ../modules/fish.nix
     ../modules/git.nix
     ../modules/home-manager.nix
+    ../modules/kitty.nix
     ../modules/neovim.nix
     ../modules/tmux.nix
   ];
@@ -45,7 +46,7 @@ in {
     pipenv
     python3
     python3Packages.pip
-    ripgrep
+    # ripgrep
     rclone
     rsync 
     rustc

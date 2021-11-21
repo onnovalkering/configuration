@@ -29,7 +29,6 @@ in {
     aria2
     bat
     calc
-    cargo
     cmake
     colordiff
     coreutils
@@ -53,12 +52,14 @@ in {
     p7zip 
     parallel
     pipenv
+    podman
+    podman-compose
     python3
     python3Packages.pip
-    ripgrep
     rclone
+    ripgrep
     rsync 
-    rustc
+    rustup
     speedtest-cli
     sqlite
   ];

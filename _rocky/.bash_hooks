@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+function dummy_hook() {
+    # Skip, if not the proper command.
+    [[ $BASH_COMMAND != dummy* ]] && return
+
+    # TODO: perform some checks
+
+    return 0
+}
+
+function before_command() {
+    # Do nothing if hooks are not enabled.
+    [ $HOOKS_ENABLED -eq 0 ] && return
+
+    # Do nothing if this is part of auto completion.
+    [ -n "$COMP_LINE" ] && return
+
+    # Do nothing if this is part of the regular prompt.
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return
+
+    # Process hooks in order.
+    ! dummy_hook && return 1
+    
+    return 0
+}
+
+export HOOKS_ENABLED=0
+trap before_command DEBUG

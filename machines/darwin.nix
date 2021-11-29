@@ -37,6 +37,7 @@ in {
     htop
     httpie
     hugo
+    iperf3
     jq
     kubectl
     lazygit

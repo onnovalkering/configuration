@@ -48,35 +48,6 @@
         gt-d = "git tag --delete";
         gu = "git push origin";
 
-        ka = "kubectl attach";
-        kc = "kubectl create";
-        kcj = "kubectl get cronjob";
-        kcj-d = "kubectl delete cronjob";
-        kcm = "kubectl get configmaps";
-        kcm-d = "kubectl delete configmaps";
-        kcs = "kubectl get clusterstatus";
-        kctx = "kubectl config current-context";
-        kctx-s = "kubectl config use-context";
-        kd = "kubectl describe";
-        kde = "kubectl get deploy";
-        kde-d = "kubectl delete deploy";
-        ke = "kubectl exec -it";
-        kep = "kubectl get endpoints";
-        kep-d = "kubectl delete endpoints";
-        kev = "kubectl get ev";
-        kin = "kubectl get ing";
-        kin-d = "kubectl delete ing";
-        kj = "kubectl get job";
-        kj-d = "kubectl delete job";
-        kl = "kubectl get logs";
-        kno = "kubectl get nodes";
-        kns = "kubectl get namespace";
-        kns-d = "kubectl delete namespace";
-        kns-s = "kubectl config set-context (kubectl config current-context) --namespace";
-        kpo = "kubectl get pods";
-        kpo-d = "kubectl delete pods";
-        kr = "kubectl run";
-
         ta = "tmux attach";
         tk = "tmux kill-session -t";
       };
@@ -91,10 +62,6 @@
         };
 
         decrypt = {
-          body = "echo 'Not yet implemented'";
-        };
-
-        download = {
           body = "echo 'Not yet implemented'";
         };
 

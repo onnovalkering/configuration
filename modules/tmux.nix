@@ -6,9 +6,6 @@
       enable = true;
 
       keyMode = "vi";
-
-
-
     };
   };
 }

@@ -3,8 +3,11 @@ local fn = vim.fn
 local g = vim.g
 local opt = vim.opt
 
--- Plugins
-require('plugins')
+require('packer').startup(function()
+    use 'neovim/nvim-lspconfig'
+    use 'projekt0n/github-nvim-theme'
+    use 'williamboman/nvim-lsp-installer'
+end)
 
 -- Customization
 require('config.lsp')
@@ -12,6 +15,7 @@ require('config.statusline')
 require('config.telescope')
 require('config.treesitter')
 
+-- Theme
 require('github-theme').setup {
   theme_style = 'dimmed'
 }
@@ -22,10 +26,11 @@ local function setl(opt, value)
 end
 
 setl('expandtab')
-setl('shiftwidth', 4)
-setl('tabstop', 4)
 setl('formatoptions', 'tqj')
+setl('shiftwidth', 4)
 setl('smartindent')
+setl('tabstop', 4)
+setl('termguicolors')
 
 -- Numbers
 
@@ -34,9 +39,9 @@ opt.relativenumber = true
 opt.numberwidth = 2
 
 setl('cursorline')
-setl('linebreak')
-setl('foldmethod', 'expr')
 setl('foldexpr', 'nvim_treesitter#foldexpr()')
+setl('foldmethod', 'expr')
+setl('linebreak')
 setl('signcolumn', 'yes')
 
 -- Mappings

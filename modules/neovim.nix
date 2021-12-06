@@ -13,7 +13,19 @@
       '';
 
       plugins = with pkgs.vimPlugins; [
-	packer-nvim
+        completion-nvim
+        lspsaga-nvim
+        lsp-status-nvim
+        lualine-lsp-progress
+        lualine-nvim
+        nvim-lspconfig
+        nvim-tree-lua
+        nvim-treesitter
+        nvim-web-devicons
+        packer-nvim
+        rust-tools-nvim
+        telescope-fzy-native-nvim
+        telescope-nvim
       ];
     };
   };

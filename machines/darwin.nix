@@ -16,7 +16,7 @@ in {
   home.username = "onno";
   home.homeDirectory = "/Users/onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
   home.packages = with pkgs; [
     aria2
@@ -49,13 +49,11 @@ in {
     pipenv
     python3
     python3Packages.pip
-    # ripgrep
+    ripgrep
     rclone
     rsync 
     rustc
     speedtest-cli
     sqlite
   ];
-
- # home.file.".config/nvim/lua".source = ../modules/files/nvim/lua;
 }

@@ -22,7 +22,6 @@ in {
     aria2
     bat
     calc
-    cargo
     cmake
     colordiff
     coreutils
@@ -52,7 +51,6 @@ in {
     ripgrep
     rclone
     rsync 
-    rustc
     speedtest-cli
     sqlite
   ];

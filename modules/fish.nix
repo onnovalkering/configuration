@@ -40,6 +40,7 @@
         gb = "git branch";
         gc = "git commit";
         gd = "git diff";
+        gf = "git fetch";
         gl = "git log --graph";
         gm = "git merge";
         gp = "git pull";

@@ -1,57 +1,88 @@
 { config, pkgs, ... }:
 
-let
-  imports = [
-    ../modules/fish.nix
-    ../modules/git.nix
-    ../modules/home-manager.nix
-    ../modules/kitty.nix
-    ../modules/neovim.nix
-    ../modules/tmux.nix
-  ];
+{
+  environment = with pkgs; {
+    shells = [
+      fish
+    ];
+    systemPackages = [
+      home-manager
+      nodejs-16_x
+      python3
+      python3Packages.pip
+      rustup
+    ];
+  };
 
-in {
-  inherit imports;
+  users = {
+    users = {
+      onno = {
+        home = "/Users/onno";
+        shell = pkgs.fish;
+      };
+    };
+  };
 
-  home.username = "onno";
-  home.homeDirectory = "/Users/onno";
-  home.keyboard.layout = "us";
-  home.stateVersion = "21.11";
+  services.nix-daemon.enable = true;
+  programs.fish.enable = true;
 
-  home.packages = with pkgs; [
-    aria2
-    bat
-    calc
-    cmake
-    colordiff
-    coreutils
-    findutils
-    gawk
-    gcc
-    gnumake
-    gnupg
-    gnused
-    gnutar
-    grpcurl
-    htop
-    httpie
-    hugo
-    iperf3
-    jq
-    kubectl
-    lazygit
-    mitmproxy
-    nmap
-    nodejs 
-    p7zip 
-    parallel
-    pipenv
-    python3
-    python3Packages.pip
-    ripgrep
-    rclone
-    rsync 
-    speedtest-cli
-    sqlite
-  ];
+  homebrew = {
+    enable = true;
+    autoUpdate = true;
+    cleanup = "zap";
+
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+      "homebrew/cask-fonts"
+    ];
+
+    casks = [
+      "alfred"
+      "cyberduck"
+      "eset-cyber-security-pro"
+      "font-fira-code-nerd-font"
+      "insomnia"
+      "microsoft-remote-desktop"
+      "rectangle"
+      "signal"
+      "visual-studio-code"
+    ];
+  };
+
+  system = {
+    stateVersion = 4;
+
+
+    defaults = {
+      dock = {
+        autohide = true;
+        mru-spaces = false;
+        orientation = "left";
+        show-recents = false;
+      };
+
+      finder = {
+        AppleShowAllExtensions = true;
+      };
+
+      loginwindow = {
+        GuestEnabled = false;
+      };
+
+      NSGlobalDomain = {
+        AppleFontSmoothing = 1;
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = false;
+        InitialKeyRepeat = 10;
+        KeyRepeat = 1;
+        _HIHideMenuBar = true;
+      };
+    }; 
+  };
+
+  keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+  };
 }

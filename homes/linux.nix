@@ -15,7 +15,7 @@ in {
   home.username = "onno";
   home.homeDirectory = "/home/onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
   home.sessionVariables = {
     TERM = "xterm";
@@ -28,38 +28,32 @@ in {
   home.packages = with pkgs; [
     aria2
     bat
-    calc
+    bc
     cmake
     colordiff
     coreutils
+    csvkit
     findutils
+    fx
     gawk
-    gcc
     gnumake
     gnupg
     gnused
     gnutar
-    grpcurl
+    gron
     htop
     httpie
-    hugo
+    iperf3
     jq
     kubectl
     lazygit
     mitmproxy
+    moreutils
     nmap
-    nodejs 
     p7zip 
-    parallel
     pipenv
-    podman
-    podman-compose
-    python3
-    python3Packages.pip
-    rclone
     ripgrep
     rsync 
-    rustup
     speedtest-cli
     sqlite
   ];

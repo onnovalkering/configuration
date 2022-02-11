@@ -64,6 +64,7 @@
 
       finder = {
         AppleShowAllExtensions = true;
+        FXEnableExtensionChangeWarning = false;
       };
 
       loginwindow = {

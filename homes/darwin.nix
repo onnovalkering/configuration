@@ -51,6 +51,7 @@ in {
     pipenv
     ripgrep
     rsync 
+    shellcheck
     speedtest-cli
     sqlite
   ];

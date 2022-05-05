@@ -9,6 +9,14 @@
         fish_vi_key_bindings
       '';
 
+      loginShellInit = ''
+        fish_add_path --move --prepend --path \
+          $HOME/.nix-profile/bin /run/wrappers/bin \
+          /etc/profiles/per-user/$USER/bin \
+          /run/current-system/sw/bin \
+          /nix/var/nix/profiles/default/bin
+      '';
+
       shellAbbrs = {
         c = "cargo";
         g = "git";
@@ -30,6 +38,7 @@
         pingf = "ping -c 100 -i .2";
 
         cb = "cargo build";
+        cf = "cargo fmt";
         ch = "cargo check";
         cr = "cargo run";
         ct = "cargo test";
@@ -78,18 +87,6 @@
           body = "echo 'Not yet implemented'";
         };
       };
-
-      plugins = [
-        {
-          name = "nix-env";
-          src = pkgs.fetchFromGitHub {
-            owner = "lilyball";
-            repo = "nix-env.fish";
-            rev = "00c6cc762427efe08ac0bd0d1b1d12048d3ca727";
-            sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
-          };
-        }
-      ];
     };
   };
 }

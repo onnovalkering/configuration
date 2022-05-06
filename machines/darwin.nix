@@ -56,6 +56,11 @@
       "syncthing"
       "visual-studio-code"
     ];
+
+    masApps = {
+        "1Password for Safari" = 1569813296;
+        "WireGuard" =  1451685025;
+    };
   };
 
   system = {

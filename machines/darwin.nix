@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
-
 {
   imports = [ <home-manager/nix-darwin> ];
+
   # Enable daemon for automatic updates.
   services.nix-daemon.enable = true;
 
@@ -10,7 +10,6 @@
       fish
     ];
     systemPackages = [
-      home-manager
       nodejs-16_x
       python3
       python3Packages.pip
@@ -46,20 +45,21 @@
 
     casks = [
       "1password"
-      "alfred"
-      "cyberduck"
-      "eset-cyber-security-pro"
+      "1password-cli"
       "font-fira-code-nerd-font"
       "kitty"
+      "raspberry-pi-imager"
+      "raycast"
       "rectangle"
       "signal"
       "syncthing"
-      "visual-studio-code"
     ];
 
     masApps = {
         "1Password for Safari" = 1569813296;
-        "WireGuard" =  1451685025;
+        "GoodNotes" = 1444383602;
+        "Passepartout" = 1433648537;
+        "Xcode" = 497799835;
     };
   };
 
@@ -89,7 +89,6 @@
         ApplePressAndHoldEnabled = false;
         InitialKeyRepeat = 20;
         KeyRepeat = 1;
-        _HIHideMenuBar = true;
       };
     }; 
 

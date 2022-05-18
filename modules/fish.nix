@@ -10,6 +10,7 @@
       '';
 
       loginShellInit = ''
+        fish_add_path /opt/homebrew/bin
         fish_add_path --move --prepend --path \
           $HOME/.nix-profile/bin /run/wrappers/bin \
           /etc/profiles/per-user/$USER/bin \

@@ -5,7 +5,7 @@ let
     ../modules/fish.nix
     ../modules/git.nix
     ../modules/home-manager.nix
-    ../modules/kitty.nix
+#    ../modules/kitty.nix
     ../modules/neovim.nix
     ../modules/tmux.nix
   ];

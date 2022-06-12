@@ -46,9 +46,10 @@
     casks = [
       "1password"
       "1password-cli"
+      "balenaetcher"
       "font-fira-code-nerd-font"
       "kitty"
-      "raspberry-pi-imager"
+      "obsidian" 
       "raycast"
       "rectangle"
       "signal"

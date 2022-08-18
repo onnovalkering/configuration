@@ -46,20 +46,19 @@
     casks = [
       "1password"
       "1password-cli"
-      "balenaetcher"
       "font-fira-code-nerd-font"
       "kitty"
       "obsidian" 
       "raycast"
       "rectangle"
+      "resilio-sync"
       "signal"
-      "syncthing"
+      "tailscale"
     ];
 
     masApps = {
         "1Password for Safari" = 1569813296;
         "GoodNotes" = 1444383602;
-        "Passepartout" = 1433648537;
         "Xcode" = 497799835;
     };
   };

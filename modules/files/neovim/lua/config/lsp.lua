@@ -58,11 +58,11 @@ saga.init_lsp_saga {
 -- Automatically install servers
 local servers = {
     "bashls",
+    "clangd",
     "cssls",
     "htmlls",
     "jsonls",
     "pyright",
-    "rescriptls",
     "yamlls",
 }
 

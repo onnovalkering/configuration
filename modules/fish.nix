@@ -31,8 +31,8 @@
         cp = "cp --interactive --verbose";
         diff = "colordiff";
         grep = "rg --line-number --color=auto";
-        la = "ls -l --classify --human-readable --color=auto --almost-all";
-        ls = "ls -l --classify --human-readable --color=auto";
+        la = "ls -l --classify --group-directories-first --human-readable --color=auto --almost-all";
+        ls = "ls -l --classify --group-directories-first --human-readable --color=auto";
         mkdir = "mkdir --parents --verbose";
         mv = "mv --interactive --verbose";
         ping = "ping -c 5";

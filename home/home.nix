@@ -2,19 +2,18 @@
 
 let
   imports = [
-    ../modules/fish.nix
-    ../modules/git.nix
-    ../modules/home-manager.nix
-    ../modules/kitty.nix
-    ../modules/neovim.nix
-    ../modules/tmux.nix
+    ./modules/fish.nix
+    ./modules/git.nix
+    ./modules/home-manager.nix
+    ./modules/kitty.nix
+    ./modules/neovim.nix
+    ./modules/tmux.nix
   ];
 
 in {
   inherit imports;
 
   home.username = "onno";
-  home.homeDirectory = "/Users/onno";
   home.keyboard.layout = "us";
   home.stateVersion = "21.11";
 

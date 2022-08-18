@@ -29,7 +29,7 @@
 
   home-manager = {
     useUserPackages = true;
-    users.onno = (import ../homes/darwin.nix);
+    users.onno = (import ../home/home.nix);
   };
 
   homebrew = {

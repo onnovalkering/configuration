@@ -51,14 +51,13 @@
       "obsidian" 
       "raycast"
       "rectangle"
-      "resilio-sync"
       "signal"
-      "tailscale"
     ];
 
     masApps = {
         "1Password for Safari" = 1569813296;
         "GoodNotes" = 1444383602;
+        "Passepartout" = 1433648537;
         "Xcode" = 497799835;
     };
   };

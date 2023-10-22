@@ -15,7 +15,7 @@ in {
 
   home.username = "onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   home.sessionVariables = {
     TERM = "xterm";
@@ -25,8 +25,6 @@ in {
     ansible
     aria2
     bat
-    bc
-    cmake
     colordiff
     coreutils
     csvkit
@@ -34,7 +32,6 @@ in {
     fx
     gawk
     gnumake
-    gnupg
     gnused
     gnutar
     gron
@@ -43,18 +40,13 @@ in {
     iperf3
     jq
     kubectl
-    lazygit
     moreutils
     nmap
     p7zip 
-    packer
-    pipenv
     ripgrep
     rsync 
     shellcheck
     speedtest-cli
     sqlite
-    terraform
-    vagrant
   ];
 }

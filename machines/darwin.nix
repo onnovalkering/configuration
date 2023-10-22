@@ -10,10 +10,6 @@
       fish
     ];
     systemPackages = [
-      nodejs-16_x
-      python3
-      python3Packages.pip
-      rustup
     ];
   };
 
@@ -47,22 +43,22 @@
       "homebrew/cask-fonts"
     ];
 
+    brews = [
+      "nvm"
+      "pyenv"
+    ];
+
     casks = [
       "1password"
       "1password-cli"
-      "eset-cyber-security-pro"
       "font-fira-code-nerd-font"
       "kitty"
-      "microsoft-outlook"
-      "raycast"
+      "obsidian"
       "rectangle"
-      "signal"
     ];
 
     masApps = {
         "1Password for Safari" = 1569813296;
-        "GoodNotes" = 1444383602;
-        "Xcode" = 497799835;
     };
   };
 

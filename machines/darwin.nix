@@ -10,6 +10,9 @@
       fish
     ];
     systemPackages = [
+      nodejs_20
+      python311
+      rustup
     ];
   };
 
@@ -41,11 +44,6 @@
       "homebrew/core"
       "homebrew/cask"
       "homebrew/cask-fonts"
-    ];
-
-    brews = [
-      "nvm"
-      "pyenv"
     ];
 
     casks = [

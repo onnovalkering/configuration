@@ -13,7 +13,7 @@
       '';
 
       plugins = with pkgs.vimPlugins; [
-        packer-nvim
+        lazy-nvim
       ];
     };
   };

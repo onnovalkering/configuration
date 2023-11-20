@@ -49,14 +49,15 @@
     casks = [
       "1password"
       "1password-cli"
-      "font-fira-code-nerd-font"
-      "kitty"
+      "font-monaspace"
+      "microsoft-outlook"
       "obsidian"
+      "raycast"
       "rectangle"
     ];
 
     masApps = {
-        "1Password for Safari" = 1569813296;
+      "1Password for Safari" = 1569813296;
     };
   };
 

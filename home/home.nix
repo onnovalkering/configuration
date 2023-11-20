@@ -48,5 +48,6 @@ in {
     shellcheck
     speedtest-cli
     sqlite
+    virtualenv
   ];
 }

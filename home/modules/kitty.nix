@@ -6,15 +6,19 @@
       enable = true;
 
       font = {
-	      name = "FiraCode Nerd Font";
-      };
-      
-      settings = {
-        macos_titlebar_color = "background";
-        macos_thicken_font = "0.4";
+        name = "Monaspace Neon";
       };
 
+      settings = {
+        macos_titlebar_color = "background";
+      };
+      
       extraConfig = ''
+        font_features MonaspaceNeon-SemiWideRegular     +ss01 +ss02 +ss03 +ss04 +ss05 +ss08 +calt +dlig
+        font_features MonaspaceNeon-SemiWideLightItalic +ss01 +ss02 +ss03 +ss04 +ss05 +ss08 +calt +dlig
+        font_features MonaspaceNeon-SemiBold            +ss01 +ss02 +ss03 +ss04 +ss05 +ss08 +calt +dlig
+        font_features MonaspaceNeon-SemiBoldItalic      +ss01 +ss02 +ss03 +ss04 +ss05 +ss08 +calt +dlig
+            
         # GitHub theme (dimmed) for Kitty
         # https://github.com/projekt0n/github-nvim-theme
 

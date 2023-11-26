@@ -54,6 +54,7 @@
       "obsidian"
       "raycast"
       "rectangle"
+      "tailscale"
     ];
 
     masApps = {

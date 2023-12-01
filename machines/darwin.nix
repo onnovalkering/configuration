@@ -55,6 +55,7 @@
       "raycast"
       "rectangle"
       "tailscale"
+      "visual-studio-code"
     ];
 
     masApps = {

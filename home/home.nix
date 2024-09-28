@@ -21,8 +21,10 @@ in {
     TERM = "xterm";
   };
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; with nodePackages; [
     ansible
+    ansible-lint
+    azure-cli
     aria2
     bat
     colordiff
@@ -30,6 +32,7 @@ in {
     csvkit
     findutils
     fx
+    fnm
     gawk
     gnumake
     gnused
@@ -41,8 +44,11 @@ in {
     jq
     kubectl
     moreutils
+    mitmproxy
+    netcat
     nmap
     p7zip 
+    pnpm
     ripgrep
     rsync 
     shellcheck

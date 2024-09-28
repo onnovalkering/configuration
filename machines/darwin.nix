@@ -11,6 +11,7 @@
     ];
     systemPackages = [
       nodejs_20
+      pipenv
       python311
       rustup
     ];
@@ -40,27 +41,13 @@
       upgrade = true;
     };
 
-    taps = [
-      "homebrew/core"
-      "homebrew/cask"
-      "homebrew/cask-fonts"
-    ];
-
     casks = [
-      "1password"
-      "1password-cli"
       "font-monaspace"
-      "microsoft-outlook"
-      "obsidian"
+      "logi-options+"
       "raycast"
-      "rectangle"
       "tailscale"
       "visual-studio-code"
     ];
-
-    masApps = {
-      "1Password for Safari" = 1569813296;
-    };
   };
 
   system = {
@@ -89,6 +76,13 @@
         ApplePressAndHoldEnabled = false;
         InitialKeyRepeat = 20;
         KeyRepeat = 1;
+      };
+
+      CustomUserPreferences = {
+        NSUserKeyEquivalents = {
+          Left = "~^←";
+          Right = "~^→";
+        };
       };
     }; 
 

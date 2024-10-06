@@ -3,20 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";    
   };
 
-  outputs = { self, nixpkgs }: {
-    darwinConfigurations = {
-      darwin = {
-        system = "aarch64-darwin";
-        modules = [ ./configurations/darwin.nix ];
-      };
-    };
-
+  outputs = { self, nixpkgs, disko, ... }: {
     nixosConfigurations = {
-      nixos = {
+      nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./configurations/nixos.nix ];
+        modules = [
+          disko.nixosModules.disko
+          ./machines/intel-nuc.nix 
+	        ./configurations/nixos.nix { 
+            hostName = "nixos"; 
+          }
+        ];
       };
     };
   };

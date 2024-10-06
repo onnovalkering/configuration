@@ -25,9 +25,7 @@
     home = "/home/onno";
     extraGroups = [ "wheel" ];
     shell = pkgs.fish;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkAtn+2JTthPhy/lD6pa5/3A6tkGD+OBmdqeni7vz0s"
-    ];
+    openssh.authorizedKeys.keys = keys;
   };
 
   # Packages to be installed in system profile.

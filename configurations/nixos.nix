@@ -3,7 +3,7 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "24.05";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -32,21 +32,7 @@
   };
 
   # Packages to be installed in system profile.
-  environment.systemPackages = with pkgs; [
-    gcc
-    gnupg
-    git
-    home-manager
-    nodejs
-    openssl
-    podman
-    podman-compose
-    python3
-    python3Packages.pip
-    rustup
-    sqlite
-    vim
-  ];
+  environment.systemPackages = with pkgs; [ ];
 
   # Enable the OpenSSH daemon.
   services.openssh = {

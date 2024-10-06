@@ -1,4 +1,4 @@
-{ config, pkgs, hostName ? "nixos" ... }:
+{ config, pkgs, ... }:
 {
   system.stateVersion = "24.05";
 
@@ -11,7 +11,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure networking.
-  networking.hostName = hostName;
+  networking.hostName = "nixos";
   networking.interfaces.eth0.useDHCP = true;
 
   # Configure security.  
@@ -25,6 +25,9 @@
     home = "/home/onno";
     extraGroups = [ "wheel" ];
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkAtn+2JTthPhy/lD6pa5/3A6tkGD+OBmdqeni7vz0s"
+    ];
   };
 
   # Packages to be installed in system profile.

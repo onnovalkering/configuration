@@ -1,15 +1,5 @@
+{ config, lib, pkgs, ... }:
 {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}:
-{
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   boot.initrd.availableKernelModules = [
     "ahci"
     "nvme"
@@ -23,6 +13,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  # Use DHCP for networking.
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -30,7 +21,7 @@
 
   disko.devices = {
     disk = {
-      nvme0n1 = {
+      main = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
@@ -47,13 +38,20 @@
               };
             };
             root = {
-              size = "224G";
+              size = "200G";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
             };
+            swap = {
+              size = "16G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+              };
+            };            
           };
         };
       };

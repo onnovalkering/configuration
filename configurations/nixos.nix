@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   system.stateVersion = "24.05";
+  nix.allowedUsers = [ "@wheel" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -12,14 +13,15 @@
 
   # Configure networking.
   networking.hostName = "nixos";
+  networking.firewall.enable = true;
   networking.interfaces.eth0.useDHCP = true;
+  networking.nftables.enable = true;
 
   # Configure security.  
+  security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
   
   programs.fish.enable = true; 
- 
-  # Configure 'onno' user.
   users.users.onno = {
     isNormalUser = true;
     home = "/home/onno";
@@ -31,24 +33,38 @@
   };
 
   # Packages to be installed in system profile.
+  environment.defaultPackages = lib.mkForce [];
   environment.systemPackages = with pkgs; [
    vim
    git
   ];
 
-  # Enable the OpenSSH daemon.
+  # Enable the OpenSSH service.
+  services.openssh.enable = true;
   services.openssh = {
-    enable = true;
-    
+    allowSFTP = false;
+    openFirewall = true;
+
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
 
     extraConfig = ''
+      AllowAgentForwarding no
+      AllowStreamLocalForwarding no
+      AllowTcpForwarding yes
+      AuthenticationMethods publickey
       TrustedUserCAKeys /etc/ssh/ca_key.pub
+      X11Forwarding no
     '';
   };
+
+  # Enable the Tailscale service.
+  services.tailscale.enable = true;
+  services.tailscale = {
+    openFirewall = true;
+  }
 
   environment.etc."ssh/ca_key.pub".text = builtins.readFile ./files/ssh_ca_key.pub;
 }

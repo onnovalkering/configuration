@@ -18,14 +18,12 @@
   };
 
   programs.fish.enable = true;
-  users = {
-    users = {
-      onno = {
-        home = "/Users/onno";
-        shell = pkgs.fish;
-      };
-    };
-  };
+  users.users.onno = {
+    isNormalUser = true;
+    home = "/Users/onno";
+    extraGroups = [ "admin" ];
+    shell = pkgs.fish;
+  }
 
   home-manager = {
     useUserPackages = true;
@@ -43,10 +41,8 @@
 
     casks = [
       "font-monaspace"
-      "logi-options+"
       "raycast"
       "tailscale"
-      "visual-studio-code"
     ];
   };
 

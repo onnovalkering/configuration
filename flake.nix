@@ -13,7 +13,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
-          ./machines/intel-nuc.nix
+          ./hardware/intel-nuc.nix
 	        ./configurations/nixos.nix
         ];
       };

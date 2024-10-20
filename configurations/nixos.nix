@@ -7,14 +7,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Configure runtime kernel parameters.
-  boot.kernel = {
-    sysctl = {
-      "net.ipv4.ip_forward" = "1";
-      "net.ipv6.conf.all.forwarding" = "1";
-    };
-  };
-
   # Configure time and i18n.
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -77,10 +69,4 @@
   services.tailscale = {
     openFirewall = true;
   };
-
-  systemd.services.tailscaled-autoconnect = {
-    preStart = ''
-      ${pkgs.ethtool}/bin/ethtool -K eth0 rx-udp-gro-forwarding on rx-gro-list off
-    '';
-  };  
 }

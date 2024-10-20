@@ -33,11 +33,15 @@
   };
 
   # Packages to be installed in system profile.
-  environment.defaultPackages = lib.mkForce [];
+  # environment.defaultPackages = lib.mkForce [];
   environment.systemPackages = with pkgs; [
    vim
    git
   ];
+
+  environment.etc = {
+    "ssh/ca_key.pub".text = builtins.readFile ./files/ssh_ca_key.pub;
+  };
 
   # Enable the OpenSSH service.
   services.openssh.enable = true;
@@ -64,7 +68,5 @@
   services.tailscale.enable = true;
   services.tailscale = {
     openFirewall = true;
-  }
-
-  environment.etc."ssh/ca_key.pub".text = builtins.readFile ./files/ssh_ca_key.pub;
+  };
 }

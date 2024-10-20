@@ -7,6 +7,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Configure runtime kernel parameters.
+  boot.kernel = {
+    sysctl = {
+      "net.ipv4.ip_forward" = "1";
+    };
+  };
+
   # Configure time and i18n.
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -39,10 +46,6 @@
    git
   ];
 
-  environment.etc = {
-    "ssh/ca_key.pub".text = builtins.readFile ./files/ssh_ca_key.pub;
-  };
-
   # Enable the OpenSSH service.
   services.openssh.enable = true;
   services.openssh = {
@@ -62,6 +65,10 @@
       TrustedUserCAKeys /etc/ssh/ca_key.pub
       X11Forwarding no
     '';
+  };
+
+  environment.etc = {
+    "ssh/ca_key.pub".text = builtins.readFile ./files/ssh_ca_key.pub;
   };
 
   # Enable the Tailscale service.

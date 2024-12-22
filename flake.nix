@@ -9,13 +9,16 @@
 
   outputs = { self, nixpkgs, disko }: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      homeserver = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
           ./hardware/intel-nuc.nix
 	        ./configurations/nixos.nix
         ];
+        specialArgs = {
+          hostName = "homeserver";
+        }
       };
     };
   };

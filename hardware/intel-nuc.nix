@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, hostName, ... }:
 {
   boot.initrd.availableKernelModules = [
     "ahci"
@@ -14,6 +14,7 @@
   boot.extraModulePackages = [ ];
 
   # Use DHCP for networking.
+  networking.hostName = hostName;
   networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -46,7 +47,7 @@
               };
             };
             swap = {
-              size = "16G";
+              size = "32G";
               content = {
                 type = "swap";
                 randomEncryption = true;

@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   nix.allowedUsers = [ "@wheel" ];
 
   # Use the systemd-boot EFI boot loader.
@@ -12,7 +12,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure networking.
-  networking.hostName = "nixos";
   networking.firewall.enable = true;
   networking.interfaces.eth0.useDHCP = true;
   networking.nftables.enable = true;
@@ -33,7 +32,6 @@
   };
 
   # Packages to be installed in system profile.
-  # environment.defaultPackages = lib.mkForce [];
   environment.systemPackages = with pkgs; [
    vim
    git

@@ -47,7 +47,7 @@
               };
             };
             swap = {
-              size = "32G";
+              size = "24G";
               content = {
                 type = "swap";
                 randomEncryption = true;

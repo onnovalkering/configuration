@@ -14,11 +14,13 @@
         modules = [
           disko.nixosModules.disko
           ./hardware/intel-nuc.nix
-	        ./configurations/nixos.nix
+	        ./configurations/nixos/nixos.nix
+          ./configurations/nixos/roles/openssh.nix
+          ./configurations/nixos/roles/tailscale.nix
         ];
         specialArgs = {
           hostName = "homeserver";
-        }
+        };
       };
     };
   };

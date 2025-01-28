@@ -4,18 +4,18 @@ let
   imports = [
     ./modules/fish.nix
     ./modules/git.nix
-    ./modules/home-manager.nix
-    ./modules/kitty.nix
-    ./modules/neovim.nix
     ./modules/tmux.nix
   ];
 
 in {
   inherit imports;
 
+  # Let Home Manager manage itself.
+  programs.home-manager.enable = true;
+
   home.username = "onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.11";
 
   home.sessionVariables = {
     TERM = "xterm";
@@ -47,10 +47,10 @@ in {
     mitmproxy
     netcat
     nmap
-    p7zip 
+    p7zip
     pnpm
     ripgrep
-    rsync 
+    rsync
     shellcheck
     speedtest-cli
     sqlite

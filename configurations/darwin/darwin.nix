@@ -1,18 +1,15 @@
 { config, pkgs, ... }:
 {
-  imports = [ <home-manager/nix-darwin> ];
-
   # Enable daemon for automatic updates.
   services.nix-daemon.enable = true;
 
   environment = with pkgs; {
-    shells = [
-      fish
-    ];
+    # shells = [
+    #   fish
+    # ];
     systemPackages = [
-      nodejs_20
-      pipenv
-      python311
+      nodenv
+      pyenv
       rustup
     ];
   };
@@ -25,14 +22,9 @@
     shell = pkgs.fish;
   }
 
-  home-manager = {
-    useUserPackages = true;
-    users.onno = (import ../home/home.nix);
-  };
-
   homebrew = {
     enable = true;
-    
+
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
@@ -40,9 +32,10 @@
     };
 
     casks = [
-      "font-monaspace"
+      "ghostty"
       "raycast"
       "tailscale"
+      "zed"
     ];
   };
 
@@ -80,7 +73,7 @@
           Right = "~^→";
         };
       };
-    }; 
+    };
 
     keyboard = {
       enableKeyMapping = true;

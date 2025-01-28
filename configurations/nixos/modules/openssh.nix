@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
-{ 
+{
   services.openssh.enable = true;
   services.openssh = {
-    allowSFTP = false;
+    allowSFTP = true;
     openFirewall = true;
 
     settings = {

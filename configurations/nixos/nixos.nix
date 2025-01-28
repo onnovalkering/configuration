@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   system.stateVersion = "24.11";
-  nix.settings.allowedUsers = [ "@wheel" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -12,6 +12,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure networking.
+  networking.hostName = "homeserver";
   networking.firewall.enable = true;
   networking.interfaces.eth0.useDHCP = true;
   networking.nftables.enable = true;

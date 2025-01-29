@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   programs = {
     fish = {
@@ -79,7 +78,7 @@
         encrypt = {
           body = "echo 'Not yet implemented'";
         };
-        
+
         extract = {
           body = "echo 'Not yet implemented'";
         };

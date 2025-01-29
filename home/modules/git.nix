@@ -1,16 +1,14 @@
 { pkgs, ... }:
-
 {
   programs = {
     git = {
       enable = true;
-      
+
       userName = "Onno Valkering";
       userEmail = "onnovalkering@users.noreply.github.com";
 
       aliases = {
         main = "checkout main";
-        master = "checkout master";
         develop = "checkout develop";
       };
 
@@ -29,9 +27,6 @@
         };
         gpg = {
           format = "ssh";
-        };	
-	     gpg.ssh = {
-          program  = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
         };
         log = {
           date = "relative";

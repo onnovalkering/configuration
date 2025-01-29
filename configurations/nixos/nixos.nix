@@ -17,22 +17,12 @@
   networking.interfaces.eth0.useDHCP = true;
   networking.nftables.enable = true;
 
-  # Configure security.  
+  # Configure security.
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # Configure container runtime.
-  virtualisation.podman.enable = true;
-  virtualisation.podman = {
-    autoPrune.enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings = {
-      dns_enabled = true;
-    };
-  };
-
   # Configure user accounts.
-  programs.fish.enable = true; 
+  programs.fish.enable = true;
   users.users.onno = {
     isNormalUser = true;
     home = "/home/onno";
@@ -46,8 +36,6 @@
   # Packages to be installed in system profile.
   environment.systemPackages = with pkgs; [
    git
-   podman-compose
-   podman-tui
    vim
   ];
 }

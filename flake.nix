@@ -9,13 +9,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, disko, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, disko, nix-darwin, home-manager, ... }: {
+    darwinConfigurations = {
+      macbook-pro = nix-darwin.lib.darwinSystem {
+        modules = [
+          ./configurations/darwin/darwin.nix
+        ];
+      };
+    };
+
     nixosConfigurations = {
       homeserver = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

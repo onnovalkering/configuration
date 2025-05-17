@@ -21,9 +21,8 @@
         c = "cargo";
         g = "git";
         k = "kubectl";
-        n = "nvim";
-        p = "podman";
         t = "tmux";
+        v = "vim";
       };
 
       shellAliases = {
@@ -57,6 +56,8 @@
         gt = "git tag";
         gt-d = "git tag --delete";
         gu = "git push origin";
+
+        # kubectl
 
         ta = "tmux attach";
         tk = "tmux kill-session -t";

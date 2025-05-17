@@ -1,33 +1,26 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@args:
 {
-  nix.enable = false;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.hostPlatform = "aarch64-darwin";
+  system.stateVersion = 5;
 
-  networking.hostName = "macbook-pro";
+  # Configure networking.
+  networking.hostName = args.hostName;
 
-  homebrew = {
-    enable = true;
-
-    onActivation = {
-      autoUpdate = true;
-      cleanup = "zap";
-      upgrade = true;
-    };
-
-    casks = [
-      "ghostty"
-      "raycast"
-      "rectangle"
-      "tailscale"
-      "zed"
-    ];
-  };
-
+  # Configure security.
   security.pam.enableSudoTouchIdAuth = true;
 
-  system = {
-    stateVersion = 5;
+  # Configure user accounts.
+  users = {
+    users = {
+      onno = {
+        home = "/Users/onno";
+      };
+    };
+  };
 
+  # Configure system.
+  system = {
     defaults = {
       dock = {
         autohide = true;
@@ -53,18 +46,42 @@
         InitialKeyRepeat = 20;
         KeyRepeat = 1;
       };
-
-      CustomUserPreferences = {
-        NSUserKeyEquivalents = {
-          Left = "~^←";
-          Right = "~^→";
-        };
-      };
     };
 
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;
     };
+  };
+
+  # Applications to install.
+  homebrew = {
+    enable = true;
+
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+
+    brews = [
+      "incus"
+    ];
+
+    casks = [
+      "ghostty"
+      "raycast"
+      "rectangle"
+      "tailscale"
+      "zed"
+    ];
+  };
+
+  # Packages to be installed in system profile.
+  environment = with pkgs; {
+    systemPackages = [
+      fnm
+      pyenv
+    ];
   };
 }

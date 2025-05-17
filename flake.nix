@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-24.11-darwin";
 
     disko = {
       url = "github:nix-community/disko";
@@ -11,7 +12,7 @@
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     home-manager = {
@@ -23,8 +24,18 @@
   outputs = inputs@{ self, nixpkgs, disko, nix-darwin, home-manager, ... }: {
     darwinConfigurations = {
       macbook-pro = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {
+          hostName = "macbook-pro";
+        };
         modules = [
           ./configurations/darwin/darwin.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.onno = import ./home/home.nix;
+          }
         ];
       };
     };

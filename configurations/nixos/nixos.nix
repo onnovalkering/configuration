@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@args:
 {
-  system.stateVersion = "24.11";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.hostPlatform = "x86_64-linux";
+  system.stateVersion = "24.11";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -12,7 +13,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure networking.
-  networking.hostName = "homeserver";
+  networking.hostName = args.hostName;
   networking.firewall.enable = true;
   networking.interfaces.eth0.useDHCP = true;
   networking.nftables.enable = true;
@@ -34,8 +35,10 @@
   };
 
   # Packages to be installed in system profile.
-  environment.systemPackages = with pkgs; [
-   git
-   vim
-  ];
+  environment = with pkgs; {
+    systemPackages = [
+      git
+      vim
+    ];
+  };
 }

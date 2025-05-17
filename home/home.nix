@@ -1,18 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@args:
 
 let
   imports = [
     ./modules/fish.nix
     ./modules/git.nix
-    ./modules/home-manager.nix
     ./modules/tmux.nix
   ];
 
 in {
   inherit imports;
-
-  # Let Home Manager manage itself.
-  programs.home-manager.enable = true;
 
   home.username = "onno";
   home.keyboard.layout = "us";
@@ -22,21 +18,28 @@ in {
     TERM = "xterm";
   };
 
-  home.packages = with pkgs; with nodePackages; [
+  home.packages = with pkgs; [
     colordiff
     coreutils
     csvkit
+    curl
+    dig
     findutils
     gawk
     gnumake
+    gnupg
     gnused
     gnutar
     htop
     httpie
+    imagemagick
     jq
-    moreutils
     mitmproxy
+    moreutils
     netcat
     nmap
+    ripgrep
+    tree
+    wget
   ];
 }

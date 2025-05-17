@@ -19,7 +19,7 @@
 
       extraConfig = {
         core = {
-          editor = "${pkgs.neovim}/bin/nvim";
+          editor = "/usr/bin/vim";
           sshCommand = "/usr/bin/ssh";
         };
         format = {

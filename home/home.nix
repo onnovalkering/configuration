@@ -4,6 +4,7 @@ let
   imports = [
     ./modules/fish.nix
     ./modules/git.nix
+    ./modules/ssh.nix
     ./modules/tmux.nix
   ];
 

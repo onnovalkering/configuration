@@ -80,7 +80,7 @@
   # Packages to be installed in system profile.
   environment = with pkgs; {
     systemPackages = [
-      fnm
+      bun
       pyenv
     ];
   };

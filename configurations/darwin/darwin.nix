@@ -8,7 +8,7 @@
   networking.hostName = args.hostName;
 
   # Configure security.
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Configure user accounts.
   users = {
@@ -21,6 +21,8 @@
 
   # Configure system.
   system = {
+    primaryUser = "onno";
+
     defaults = {
       dock = {
         autohide = true;

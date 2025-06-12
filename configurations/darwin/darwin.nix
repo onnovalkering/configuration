@@ -84,6 +84,7 @@
     systemPackages = [
       bun
       pyenv
+      rustup
     ];
   };
 }

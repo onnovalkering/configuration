@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostName, ... }:
+{ config, lib, pkgs, ... }:
 {
   boot.initrd.availableKernelModules = [
     "ahci"
@@ -12,10 +12,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  # Use DHCP for networking.
-  networking.hostName = hostName;
-  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -52,7 +48,7 @@
                 type = "swap";
                 randomEncryption = true;
               };
-            };            
+            };
           };
         };
       };

@@ -13,7 +13,7 @@ in {
 
   home.username = "onno";
   home.keyboard.layout = "us";
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   home.sessionVariables = {
     TERM = "xterm";

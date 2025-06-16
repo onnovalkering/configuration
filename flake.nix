@@ -31,11 +31,7 @@
         modules = [
           ./configurations/darwin/darwin.nix
           home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.onno = import ./home/home.nix;
-          }
+          ./home/config.nix
         ];
       };
     };
@@ -54,11 +50,7 @@
           ./configurations/nixos/services/openssh.nix
           ./configurations/nixos/services/tailscale.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.onno = import ./home/home.nix;
-          }
+          ./home/config.nix
         ];
       };
     };

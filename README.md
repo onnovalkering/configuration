@@ -5,12 +5,11 @@ This repository contains my configurations, most of it relies on Nix.
 Boot into the live environment and run the following command:
 
 ```
-$ export HOST_NAME="homeserver"
-$ export DISK_NAME="/dev/nvme0n1"
+$ export HOST_NAME="server-<name>"
 $ sudo nix run "github:nix-community/disko#disko-install" \
     --experimental-features "nix-command flakes" -- \
     --flake "github:onnovalkering/configuration#${HOST_NAME}" \
-    --disk main $DISK_NAME \
+    --disk main /dev/nvme0n1 \
     --write-efi-boot-entries
 ```
 

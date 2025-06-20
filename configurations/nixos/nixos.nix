@@ -30,7 +30,7 @@
     extraGroups = [ "docker" "wheel" ];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkAtn+2JTthPhy/lD6pa5/3A6tkGD+OBmdqeni7vz0s"
+      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGqt8WH23sc4UXBQoalmG5qnazUuOUd/wn039CZNY2e5GUbwOMHuOasYLisGS9lfE2NaaUqnMn0u612vPCqcU5KBAF4xAV2aT0fnRP/ZdEir2dvJ11CCTWlvj2fYITtffywyKgdVCa90gmBm6TA7c4kp0NBoDeOJ8Rgbowt+pTWLz+7qw=="
     ];
   };
 

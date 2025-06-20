@@ -61,7 +61,7 @@
         };
         modules = [
           disko.nixosModules.disko
-          ./hardware/intel-aipc-dev-kit.nix
+          ./hardware/intel-aipc-devkit.nix
           ./configurations/nixos/nixos.nix
           ./configurations/nixos/services/kubernetes.nix
           ./configurations/nixos/services/openssh.nix

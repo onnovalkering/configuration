@@ -6,7 +6,7 @@ Boot into the live environment and run the following command:
 
 ```
 $ curl -sLO https://raw.githubusercontent.com/onnovalkering/configuration/main/install.sh
-$ bash install.sh "<server-name>"
+$ bash install.sh
 ```
 
 To update the system, run the following command:

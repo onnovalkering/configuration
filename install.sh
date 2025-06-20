@@ -2,20 +2,40 @@
 
 set -euo pipefail
 
-# Check for the correct number of arguments
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <hostname>"
-    exit 1
-fi
+# Function to display server selection menu
+select_server() {
+    local servers=("server-vespa" "server-vulcan")
+    local choice
 
-HOST_NAME="$1"
+    while true; do
+        echo "Please select a server:"
+        for i in "${!servers[@]}"; do
+            echo "$((i+1))) ${servers[$i]}"
+        done
+        echo ""
+        read -p "Enter your choice (1-${#servers[@]}): " choice
+
+        if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#servers[@]}" ]; then
+            HOST_NAME="${servers[$((choice-1))]}"
+            break
+        else
+            echo "Invalid choice. Please try again."
+            echo ""
+        fi
+    done
+}
+
+# Check if hostname is provided as argument, otherwise prompt for selection
+if [ "$#" -eq 1 ]; then
+    HOST_NAME="$1"
+else
+    select_server
+fi
 
 # Constants
 readonly DISK_DEVICE="/dev/nvme0n1"
 readonly GITHUB_REPO="onnovalkering/configuration"
 readonly DISKO_REPO="nix-community/disko"
-
-echo "Running install script for host: ${HOST_NAME}"
 
 # The command from your README
 sudo nix run "github:${DISKO_REPO}#disko-install" \

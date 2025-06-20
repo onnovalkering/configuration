@@ -1,6 +1,7 @@
 { config, pkgs, ... }@args:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.05";
 
@@ -21,6 +22,12 @@
   # Configure security.
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
+
+  # Forcefully disable system suspend, hibernate, and sleep targets.
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+  systemd.targets.sleep.enable = false;
 
   # Packages to be installed in system profile.
   environment = with pkgs; {

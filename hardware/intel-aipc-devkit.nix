@@ -11,11 +11,12 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "nomodeset" ];
+  boot.kernelParams = [ "pci=nocrs" ];
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = [ pkgs.vpl-gpu-rt ];
 
   disko.devices = {
     disk = {

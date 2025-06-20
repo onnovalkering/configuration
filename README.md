@@ -5,12 +5,8 @@ This repository contains my configurations, most of it relies on Nix.
 Boot into the live environment and run the following command:
 
 ```
-$ export HOST_NAME="server-<name>"
-$ sudo nix run "github:nix-community/disko#disko-install" \
-    --experimental-features "nix-command flakes" -- \
-    --flake "github:onnovalkering/configuration#${HOST_NAME}" \
-    --disk main /dev/nvme0n1 \
-    --write-efi-boot-entries
+$ curl -sLO https://raw.githubusercontent.com/onnovalkering/configuration/main/install.sh
+$ bash install.sh "<server-name>"
 ```
 
 To update the system, run the following command:

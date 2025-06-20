@@ -37,16 +37,33 @@
     };
 
     nixosConfigurations = {
-      homeserver = nixpkgs.lib.nixosSystem {
+      server-vesta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          hostName = "homeserver";
+          hostName = "server-vesta";
         };
         modules = [
           disko.nixosModules.disko
-          ./hardware/intel-nuc.nix
+          ./hardware/intel-nuc-11-ess.nix
           ./configurations/nixos/nixos.nix
-          ./configurations/nixos/services/docker.nix
+          ./configurations/nixos/services/kubernetes.nix
+          ./configurations/nixos/services/openssh.nix
+          ./configurations/nixos/services/tailscale.nix
+          home-manager.nixosModules.home-manager
+          ./home/config.nix
+        ];
+      };
+
+      server-vulcan = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          hostName = "server-vulcan";
+        };
+        modules = [
+          disko.nixosModules.disko
+          ./hardware/intel-aipc-dev-kit.nix
+          ./configurations/nixos/nixos.nix
+          ./configurations/nixos/services/kubernetes.nix
           ./configurations/nixos/services/openssh.nix
           ./configurations/nixos/services/tailscale.nix
           home-manager.nixosModules.home-manager

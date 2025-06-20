@@ -1,11 +1,11 @@
-{ config, pkgs, ... }@args:
+{ config, pkgs, ... }:
 
 let
   imports = [
-    ./modules/fish.nix
-    ./modules/git.nix
-    ./modules/ssh.nix
-    ./modules/tmux.nix
+    ./programs/fish.nix
+    ./programs/git.nix
+    ./programs/ssh.nix
+    ./programs/tmux.nix
   ];
 
 in {

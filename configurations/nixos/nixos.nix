@@ -2,7 +2,7 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -23,7 +23,6 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Configure user accounts.
-  programs.fish.enable = true;
   users.users.onno = {
     isNormalUser = true;
     home = "/home/onno";

@@ -1,10 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
   boot.initrd.availableKernelModules = [
-    "ahci"
     "nvme"
     "sd_mod"
-    "sdhci_pci"
     "usb_storage"
     "usbhid"
     "xhci_pci"
@@ -13,8 +11,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = true;
 
   disko.devices = {
     disk = {
@@ -43,7 +40,7 @@
               };
             };
             swap = {
-              size = "24G";
+              size = "8G";
               content = {
                 type = "swap";
                 randomEncryption = true;

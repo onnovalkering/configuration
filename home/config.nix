@@ -3,4 +3,14 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.onno = import ./home.nix;
+
+  users.users.onno = {
+    isNormalUser = true;
+    home = "/home/onno";
+    extraGroups = [ "docker" "wheel" ];
+    shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGqt8WH23sc4UXBQoalmG5qnazUuOUd/wn039CZNY2e5GUbwOMHuOasYLisGS9lfE2NaaUqnMn0u612vPCqcU5KBAF4xAV2aT0fnRP/ZdEir2dvJ11CCTWlvj2fYITtffywyKgdVCa90gmBm6TA7c4kp0NBoDeOJ8Rgbowt+pTWLz+7qw=="
+    ];
+  };
 }

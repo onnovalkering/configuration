@@ -62,6 +62,7 @@
         ga = "git add";
         gb = "git branch";
         gc = "git commit";
+        gca = "git commit --amend";
         gd = "git diff";
         gf = "git fetch";
         gl = "git log --graph";
@@ -69,8 +70,9 @@
         gp = "git pull";
         gs = "git status";
         gt = "git tag";
-        gt-d = "git tag --delete";
+        gtd = "git tag --delete";
         gu = "git push origin";
+        guf = "git push origin --force";
 
         # kubectl
 

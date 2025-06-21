@@ -18,6 +18,12 @@
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = [ pkgs.vpl-gpu-rt ];
 
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+  '';
+
   disko.devices = {
     disk = {
       main = {

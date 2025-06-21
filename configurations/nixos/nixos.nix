@@ -23,6 +23,14 @@
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
 
+  # Disable sleep/suspend/hibernate.
+  systemd.targets = {
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
+    sleep.enable = false;
+    suspend.enable = false;
+  };
+
   # Packages to be installed in system profile.
   environment = with pkgs; {
     systemPackages = [

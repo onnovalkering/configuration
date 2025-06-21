@@ -1,6 +1,6 @@
 # Configuration
 
-This repository contains my [Nix](https://nixos.org/) configurations for reproducible and declarative systems.
+This repository contains my Nix configurations for reproducible and declarative systems.
 
 ## Darwin
 To apply or update the system, run the following command:

@@ -11,13 +11,15 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "pci=nocrs" ];
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.enable = true;
-  hardware.graphics.extraPackages = [ pkgs.vpl-gpu-rt ];
+  hardware.graphics.extraPackages = with pkgs; [
+    vpl-gpu-rt
+  ];
 
+  # My AI PC Development Kit wrongly reports a closed lid.
   services.logind.extraConfig = ''
     HandleLidSwitch=ignore
     HandleLidSwitchExternalPower=ignore

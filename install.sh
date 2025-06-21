@@ -2,9 +2,8 @@
 
 set -euo pipefail
 
-# Function to display server selection menu
 select_server() {
-    local servers=("server-vespa" "server-vulcan")
+    local servers=("server-vesta" "server-vulcan")
     local choice
 
     while true; do
@@ -25,19 +24,16 @@ select_server() {
     done
 }
 
-# Check if hostname is provided as argument, otherwise prompt for selection
 if [ "$#" -eq 1 ]; then
     HOST_NAME="$1"
 else
     select_server
 fi
 
-# Constants
 readonly DISK_DEVICE="/dev/nvme0n1"
 readonly GITHUB_REPO="onnovalkering/configuration"
 readonly DISKO_REPO="nix-community/disko"
 
-# The command from your README
 sudo nix run "github:${DISKO_REPO}#disko-install" \
     --experimental-features "nix-command flakes" -- \
     --flake "github:${GITHUB_REPO}#${HOST_NAME}" \

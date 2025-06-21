@@ -14,18 +14,18 @@ in
       ignoreShellProgramCheck = true;
     }
 
-    # Darwin-specific configuration
+    # Darwin-specific configuration.
     (lib.mkIf isDarwin {
       home = "/Users/onno";
     })
 
-    # NixOS-specific configuration
+    # NixOS-specific configuration.
     (lib.mkIf isNixOS {
       extraGroups = [ "wheel" ];
       home = "/home/onno";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        builtins.readFile ./files/ssh_id_key.pub
+        (builtins.readFile ./files/ssh_id_key.pub)
       ];
     })
   ];

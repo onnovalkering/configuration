@@ -11,12 +11,11 @@
     };
 
     extraConfig = ''
-      AllowAgentForwarding no
+      AllowAgentForwarding yes
       AllowStreamLocalForwarding no
       AllowTcpForwarding yes
       AuthenticationMethods publickey
       TrustedUserCAKeys /etc/ssh/ca_key.pub
-      X11Forwarding no
     '';
   };
 

@@ -10,15 +10,6 @@
   # Configure security.
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  # Configure user accounts.
-  users = {
-    users = {
-      onno = {
-        home = "/Users/onno";
-      };
-    };
-  };
-
   # Configure system.
   system = {
     primaryUser = "onno";

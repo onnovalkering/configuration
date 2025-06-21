@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   imports = [
     ./programs/fish.nix
@@ -7,8 +6,8 @@ let
     ./programs/ssh.nix
     ./programs/tmux.nix
   ];
-
-in {
+in
+{
   inherit imports;
 
   home.username = "onno";

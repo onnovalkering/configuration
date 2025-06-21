@@ -1,18 +1,32 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  isDarwin = pkgs.stdenv.isDarwin;
+  isNixOS = pkgs.stdenv.isLinux;
+in
 {
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.onno = import ./home.nix;
 
+  users.users.onno = lib.mkMerge [
+    {
+      shell = pkgs.fish;
+      ignoreShellProgramCheck = true;
+    }
 
-  users.users.onno = {
-    isNormalUser = true;
-    home = "/home/onno";
-    extraGroups = [ "docker" "wheel" ];
-    shell = pkgs.fish;
-    ignoreShellProgramCheck = true;
-    openssh.authorizedKeys.keys = [
-      "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGqt8WH23sc4UXBQoalmG5qnazUuOUd/wn039CZNY2e5GUbwOMHuOasYLisGS9lfE2NaaUqnMn0u612vPCqcU5KBAF4xAV2aT0fnRP/ZdEir2dvJ11CCTWlvj2fYITtffywyKgdVCa90gmBm6TA7c4kp0NBoDeOJ8Rgbowt+pTWLz+7qw=="
-    ];
-  };
+    # Darwin-specific configuration
+    (lib.mkIf isDarwin {
+      home = "/Users/onno";
+    })
+
+    # NixOS-specific configuration
+    (lib.mkIf isNixOS {
+      extraGroups = [ "wheel" ];
+      home = "/home/onno";
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        builtins.readFile ./files/ssh_id_key.pub
+      ];
+    })
+  ];
 }

@@ -44,6 +44,13 @@
     flags = [ "--refresh" ];
   };
 
+  # Enable automatic garbage collection.
+  nix.gc = {
+    automatic = true;
+    dates = "Sat 22:00";
+    options = "--delete-older-than 30d";
+  };
+
   # Packages to be installed in system profile.
   environment = with pkgs; {
     systemPackages = [

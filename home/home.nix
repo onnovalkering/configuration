@@ -42,5 +42,6 @@ in
     ripgrep
     tree
     wget
+    zoxide
   ];
 }

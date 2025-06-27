@@ -4,33 +4,8 @@
     fish = {
       enable = true;
 
-      shellInit = ''
-        fish_vi_key_bindings
-      '';
-
-      loginShellInit = ''
-        fish_add_path --move --prepend --path \
-          $HOME/.nix-profile/bin /run/wrappers/bin \
-          /etc/profiles/per-user/$USER/bin \
-          /run/current-system/sw/bin \
-          /nix/var/nix/profiles/default/bin
-
-        # Optional paths that are added only if they exist.
-        set optional_paths \
-          /opt/homebrew/bin \
-          $HOME/.cargo/bin
-
-        for path in $optional_paths
-          if test -d $path
-            fish_add_path $path
-          end
-        end
-
-        # Initialize `pyenv` only if it's available.
-        if type -q pyenv
-          pyenv init - fish | source
-        end
-      '';
+      shellInit = builtins.readFile ./fish/shell-init.fish;
+      loginShellInit = builtins.readFile ./fish/shell-login.fish;
 
       shellAbbrs = {
         c = "cargo";
@@ -41,6 +16,7 @@
       };
 
       shellAliases = {
+        cd = "z";
         cp = "cp --interactive --verbose";
         diff = "colordiff";
         grep = "rg --line-number --color=auto";
@@ -72,37 +48,47 @@
         gt = "git tag";
         gtd = "git tag --delete";
         gu = "git push origin";
-        guf = "git push origin --force";
+        guf = "git push origin --force-with-lease";
 
-        # kubectl
+        kctx = "kubectl config get-contexts";
+        kctx-set = "kubectl config use-context";
+        kns = "kubectl get namespaces";
+        kns-set = "kubectl config set-context --current --namespace";
+        kpo = "kubectl get pods";
+        kpo-del = "kubectl delete pods";
+        ksvc = "kubectl get services";
+        ksvc-del = "kubectl delete services";
+        kdeploy = "kubectl get deployments";
+        kdeploy-del = "kubectl delete deployments";
+        krs = "kubectl get replicasets";
+        krs-del = "kubectl delete replicasets";
+        kjob = "kubectl get jobs";
+        kjob-del = "kubectl delete jobs";
+        kno = "kubectl get nodes";
+        kpv = "kubectl get persistentvolumes";
+        kpv-del = "kubectl delete persistentvolumes";
+        kpvc = "kubectl get persistentvolumeclaims";
+        kpvc-del = "kubectl delete persistentvolumeclaims";
 
         ta = "tmux attach";
         tk = "tmux kill-session -t";
       };
 
       functions = {
-        fish_greeting = {
-          body = "";
-        };
-
         compress = {
-          body = "echo 'Not yet implemented'";
+          body = builtins.readFile ./fish/functions/compress.fish;
         };
-
         decrypt = {
-          body = "echo 'Not yet implemented'";
+          body = builtins.readFile ./fish/functions/decrypt.fish;
         };
-
         encrypt = {
-          body = "echo 'Not yet implemented'";
+          body = builtins.readFile ./fish/functions/encrypt.fish;
         };
-
         extract = {
-          body = "echo 'Not yet implemented'";
+          body = builtins.readFile ./fish/functions/extract.fish;
         };
-
         hash = {
-          body = "echo 'Not yet implemented'";
+          body = builtins.readFile ./fish/functions/hash.fish;
         };
       };
     };

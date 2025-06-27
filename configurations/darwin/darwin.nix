@@ -65,7 +65,7 @@
       "ghostty"
       "raycast"
       "rectangle"
-      "tailscale"
+      "tailscale-app"
       "zed"
     ];
   };

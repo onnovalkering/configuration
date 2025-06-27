@@ -1,14 +1,12 @@
-{ config, pkgs, ... }:
-let
+{ pkgs, ... }:
+{
   imports = [
+    ./programs/direnv.nix
     ./programs/fish.nix
     ./programs/git.nix
     ./programs/ssh.nix
     ./programs/tmux.nix
   ];
-in
-{
-  inherit imports;
 
   home.username = "onno";
   home.keyboard.layout = "us";

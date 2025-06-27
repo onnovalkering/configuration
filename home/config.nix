@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   isDarwin = pkgs.stdenv.isDarwin;
   isNixOS = pkgs.stdenv.isLinux;

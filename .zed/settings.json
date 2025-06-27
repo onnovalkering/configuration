@@ -1,0 +1,16 @@
+{
+  "lsp": {
+    "nil": {
+      "settings": {
+        "formatting": {
+          "command": ["nixfmt"]
+        }
+      }
+    }
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["nil"]
+    }
+  }
+}

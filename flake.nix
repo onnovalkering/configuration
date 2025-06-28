@@ -20,17 +20,28 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
+      self,
       disko,
       home-manager,
       nix-darwin,
       nixpkgs,
       nixpkgs-unstable,
+      pre-commit-hooks,
       ...
     }:
+    let
+      system-dev = "aarch64-darwin";
+      pkgs-dev = nixpkgs-unstable.legacyPackages.${system-dev};
+    in
     {
       darwinConfigurations =
         let
@@ -95,18 +106,24 @@
           };
         };
 
-      devShells =
-        let
-          system = "aarch64-darwin";
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
-        in
-        {
-          ${system}.default = pkgs-unstable.mkShell {
-            buildInputs = with pkgs-unstable; [
-              nil
-              nixfmt-rfc-style
-            ];
-          };
+      checks.${system-dev}.pre-commit-check = pre-commit-hooks.lib.${system-dev}.run {
+        src = ./.;
+        hooks = {
+          deadnix.enable = true;
+          nixfmt-rfc-style.enable = true;
+          statix.enable = true;
         };
+      };
+
+      devShells.${system-dev}.default = pkgs-dev.mkShell {
+        inherit (self.checks.${system-dev}.pre-commit-check) shellHook;
+
+        buildInputs = with pkgs-dev; [
+          deadnix
+          nil
+          nixfmt-rfc-style
+          statix
+        ];
+      };
     };
 }

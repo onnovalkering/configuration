@@ -7,28 +7,38 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.05";
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Configure bootloader and kernel parameters.
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    kernel.sysctl = {
+      "net.ipv4.ip_forward" = 1;
+      "net.ipv6.conf.all.forwarding" = 1;
+    };
+  };
 
   # Configure time and i18n.
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure networking.
-  networking.hostName = args.hostName;
-  networking.firewall.enable = true;
-  networking.interfaces.eth0.useDHCP = true;
-  networking.nftables.enable = true;
-
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_forward" = 1;
-    "net.ipv6.conf.all.forwarding" = 1;
+  networking = {
+    inherit (args) hostName;
+    firewall.enable = true;
+    interfaces.eth0.useDHCP = true;
+    nftables.enable = true;
   };
 
   # Configure security.
-  security.sudo.execWheelOnly = true;
-  security.sudo.wheelNeedsPassword = false;
+  security = {
+    sudo = {
+      execWheelOnly = true;
+      wheelNeedsPassword = false;
+    };
+  };
 
   # Disable sleep/suspend/hibernate.
   systemd.targets = {

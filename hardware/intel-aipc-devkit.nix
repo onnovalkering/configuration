@@ -1,24 +1,33 @@
 { pkgs, ... }:
 {
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "sd_mod"
-    "thunderbolt"
-    "usb_storage"
-    "usbhid"
-    "xhci_pci"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_6_15;
-  boot.kernelParams = [ "pci=nocrs" ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "sd_mod"
+        "thunderbolt"
+        "usb_storage"
+        "usbhid"
+        "xhci_pci"
+      ];
+    };
 
-  hardware.cpu.intel.updateMicrocode = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.graphics.enable = true;
-  hardware.graphics.extraPackages = with pkgs; [
-    vpl-gpu-rt
-  ];
+    kernelModules = [ "kvm-intel" ];
+    kernelPackages = pkgs.linuxPackages_6_15;
+    kernelParams = [ "pci=nocrs" ];
+  };
+
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        vpl-gpu-rt
+      ];
+    };
+  };
 
   # My AI PC Development Kit wrongly reports a closed lid.
   services.logind.extraConfig = ''

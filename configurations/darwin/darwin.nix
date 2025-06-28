@@ -8,7 +8,9 @@
   system.stateVersion = 5;
 
   # Configure networking.
-  networking.hostName = args.hostName;
+  networking = {
+    inherit (args) hostName;
+  };
 
   # Configure security.
   security.pam.services.sudo_local.touchIdAuth = true;

@@ -1,12 +1,13 @@
 { pkgs, lib, ... }:
 let
-  isDarwin = pkgs.stdenv.isDarwin;
-  isNixOS = pkgs.stdenv.isLinux;
+  inherit (pkgs.stdenv) isDarwin isLinux;
 in
 {
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.onno = import ./home.nix;
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.onno = import ./home.nix;
+  };
 
   users.users.onno = lib.mkMerge [
     {
@@ -20,7 +21,7 @@ in
     })
 
     # NixOS-specific configuration.
-    (lib.mkIf isNixOS {
+    (lib.mkIf isLinux {
       extraGroups = [ "wheel" ];
       home = "/home/onno";
       isNormalUser = true;

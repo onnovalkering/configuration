@@ -8,40 +8,42 @@
     ./programs/tmux.nix
   ];
 
-  home.username = "onno";
-  home.keyboard.layout = "us";
-  home.stateVersion = "25.05";
+  home = {
+    username = "onno";
+    keyboard.layout = "us";
+    stateVersion = "25.05";
 
-  home.sessionVariables = {
-    TERM = "xterm";
+    sessionVariables = {
+      TERM = "xterm";
+    };
+
+    packages = with pkgs; [
+      aria2
+      bat
+      colordiff
+      coreutils
+      csvkit
+      curl
+      dig
+      findutils
+      gawk
+      gnumake
+      gnupg
+      gnused
+      gnutar
+      htop
+      httpie
+      imagemagick
+      jq
+      kubectl
+      mitmproxy
+      moreutils
+      netcat
+      nmap
+      ripgrep
+      tree
+      wget
+      zoxide
+    ];
   };
-
-  home.packages = with pkgs; [
-    aria2
-    bat
-    colordiff
-    coreutils
-    csvkit
-    curl
-    dig
-    findutils
-    gawk
-    gnumake
-    gnupg
-    gnused
-    gnutar
-    htop
-    httpie
-    imagemagick
-    jq
-    kubectl
-    mitmproxy
-    moreutils
-    netcat
-    nmap
-    ripgrep
-    tree
-    wget
-    zoxide
-  ];
 }

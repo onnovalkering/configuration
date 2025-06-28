@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 # configuration/home/programs/fish/login.sh
 fish_add_path --move --prepend --path \
   $HOME/.nix-profile/bin /run/wrappers/bin \

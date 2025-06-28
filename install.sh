@@ -12,7 +12,7 @@ select_server() {
             echo "$((i+1))) ${servers[$i]}"
         done
         echo ""
-        read -p "Enter your choice (1-${#servers[@]}): " choice
+        read -r -p "Enter your choice (1-${#servers[@]}): " choice
 
         if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#servers[@]}" ]; then
             HOST_NAME="${servers[$((choice-1))]}"
@@ -23,7 +23,7 @@ select_server() {
         fi
     done
 }
-
+s
 if [ "$#" -eq 1 ]; then
     HOST_NAME="$1"
 else

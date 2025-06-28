@@ -17,6 +17,8 @@
   };
 
   home.packages = with pkgs; [
+    aria2
+    bat
     colordiff
     coreutils
     csvkit

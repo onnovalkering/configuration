@@ -32,19 +32,25 @@
       ...
     }:
     {
-      darwinConfigurations = {
-        macbook-pro = nix-darwin.lib.darwinSystem {
+      darwinConfigurations =
+        let
           system = "aarch64-darwin";
-          specialArgs = {
-            hostName = "macbook-pro";
+          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
+        in
+        {
+          macbook-pro = nix-darwin.lib.darwinSystem {
+            inherit system;
+            specialArgs = {
+              hostName = "macbook-pro";
+              inherit pkgs-unstable;
+            };
+            modules = [
+              ./configurations/darwin/darwin.nix
+              home-manager.darwinModules.home-manager
+              ./home/config.nix
+            ];
           };
-          modules = [
-            ./configurations/darwin/darwin.nix
-            home-manager.darwinModules.home-manager
-            ./home/config.nix
-          ];
         };
-      };
 
       nixosConfigurations =
         let
@@ -95,7 +101,7 @@
           pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
         in
         {
-          aarch64-darwin.default = pkgs-unstable.mkShell {
+          ${system}.default = pkgs-unstable.mkShell {
             buildInputs = with pkgs-unstable; [
               nil
               nixfmt-rfc-style

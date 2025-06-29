@@ -28,8 +28,9 @@
   networking = {
     inherit (args) hostName;
     firewall.enable = true;
-    interfaces.eth0.useDHCP = true;
     nftables.enable = true;
+
+    interfaces.eth0.useDHCP = true;
   };
 
   # Configure security.

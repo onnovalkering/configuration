@@ -3,7 +3,7 @@
 set -euo pipefail
 
 select_server() {
-    local servers=("server-vesta" "server-vulcan")
+    local servers=("server-consus" "server-vesta" "server-vulcan")
     local choice
 
     while true; do
@@ -23,7 +23,7 @@ select_server() {
         fi
     done
 }
-s
+
 if [ "$#" -eq 1 ]; then
     HOST_NAME="$1"
 else

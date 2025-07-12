@@ -1,4 +1,7 @@
-{ pkgs, ... }@args:
+{ pkgs, hostName, ... }:
+let
+  hostId = builtins.substring 0 8 (builtins.hashString "sha256" hostName);
+in
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -26,7 +29,8 @@
 
   # Configure networking.
   networking = {
-    inherit (args) hostName;
+    inherit hostId;
+    inherit hostName;
     firewall.enable = true;
     nftables.enable = true;
 

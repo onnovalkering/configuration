@@ -69,24 +69,6 @@
           pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
         in
         {
-          server-consus = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              hostName = "server-consus";
-              inherit pkgs-unstable;
-            };
-            modules = [
-              disko.nixosModules.disko
-              ./hardware/ugreen-dxp2800.nix
-              ./configurations/nixos/nixos.nix
-              ./configurations/nixos/services/incus.nix
-              ./configurations/nixos/services/openssh.nix
-              ./configurations/nixos/services/tailscale.nix
-              home-manager.nixosModules.home-manager
-              ./home/config.nix
-            ];
-          };
-
           server-vesta = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {

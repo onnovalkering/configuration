@@ -18,6 +18,7 @@
     };
 
     packages = with pkgs; [
+      ansible
       aria2
       bat
       colordiff
@@ -26,6 +27,7 @@
       curl
       dig
       findutils
+      flyctl
       gawk
       gnumake
       gnupg

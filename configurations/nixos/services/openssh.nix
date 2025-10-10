@@ -8,7 +8,6 @@ _: {
       settings = {
         PasswordAuthentication = false;
         PermitRootLogin = "no";
-        UsePAM = false;
       };
 
       extraConfig = ''

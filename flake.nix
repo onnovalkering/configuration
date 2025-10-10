@@ -97,7 +97,6 @@
               disko.nixosModules.disko
               ./hardware/intel-aipc-devkit.nix
               ./configurations/nixos/nixos.nix
-              ./configurations/nixos/services/kubernetes.nix
               ./configurations/nixos/services/openssh.nix
               ./configurations/nixos/services/tailscale.nix
               home-manager.nixosModules.home-manager

@@ -22,7 +22,10 @@ in
 
     # NixOS-specific configuration.
     (lib.mkIf isLinux {
-      extraGroups = [ "wheel" ];
+      extraGroups = [
+        "incus-admin"
+        "wheel"
+      ];
       home = "/home/onno";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [

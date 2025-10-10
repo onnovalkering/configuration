@@ -13,7 +13,7 @@
     };
 
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackages_6_15;
+    kernelPackages = pkgs.linuxPackages_6_16;
     kernelParams = [ ];
   };
 

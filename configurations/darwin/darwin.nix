@@ -68,7 +68,6 @@
 
     casks = [
       "ghostty"
-      "raycast"
       "rectangle"
       "tailscale-app"
       "zed"

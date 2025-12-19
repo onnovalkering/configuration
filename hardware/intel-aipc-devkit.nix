@@ -13,7 +13,7 @@
     };
 
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackages_6_16;
+    kernelPackages = pkgs.linuxPackages_6_18;
     kernelParams = [ "pci=nocrs" ];
   };
 
@@ -30,11 +30,11 @@
   };
 
   # My AI PC Development Kit wrongly reports a closed lid.
-  services.logind.extraConfig = ''
-    HandleLidSwitch=ignore
-    HandleLidSwitchExternalPower=ignore
-    HandleLidSwitchDocked=ignore
-  '';
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
 
   disko.devices = {
     disk = {

@@ -3,20 +3,20 @@ _: {
     git = {
       enable = true;
 
-      userName = "Onno Valkering";
-      userEmail = "onnovalkering@users.noreply.github.com";
-
-      aliases = {
-        main = "checkout main";
-        develop = "checkout develop";
-      };
-
       signing = {
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIkAtn+2JTthPhy/lD6pa5/3A6tkGD+OBmdqeni7vz0s";
         signByDefault = true;
       };
 
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Onno Valkering";
+          email = "onnovalkering@users.noreply.github.com";
+        };
+        alias = {
+          main = "checkout main";
+          develop = "checkout develop";
+        };
         core = {
           editor = "/usr/bin/vim";
           sshCommand = "/usr/bin/ssh";

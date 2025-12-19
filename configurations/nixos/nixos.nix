@@ -8,7 +8,7 @@ in
     "flakes"
   ];
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   # Configure bootloader and kernel parameters.
   boot = {

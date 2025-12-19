@@ -11,7 +11,7 @@
   home = {
     username = "onno";
     keyboard.layout = "us";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
 
     sessionVariables = {
       TERM = "xterm";

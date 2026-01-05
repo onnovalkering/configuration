@@ -17,6 +17,8 @@
       TERM = "xterm";
     };
 
+    file.".hushlogin".text = "";
+
     packages = with pkgs; [
       ansible
       aria2

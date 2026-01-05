@@ -1,0 +1,4 @@
+{ ... }:
+{
+  imports = [ ./mount-nas.nix ];
+}

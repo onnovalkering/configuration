@@ -57,6 +57,7 @@
             };
             modules = [
               ./configurations/darwin/darwin.nix
+              ./configurations/darwin/launch-agents
               home-manager.darwinModules.home-manager
               ./home/config.nix
             ];

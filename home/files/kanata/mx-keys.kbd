@@ -1,0 +1,18 @@
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include ("USB Receiver")
+)
+
+(include shared.kbd)
+
+(defsrc
+  caps
+  lalt lmet
+  ralt rmet
+)
+
+(deflayer default
+  @press
+  lmet lalt
+  rmet ralt
+)

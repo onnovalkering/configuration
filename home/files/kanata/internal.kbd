@@ -1,0 +1,25 @@
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+)
+
+(include shared.kbd)
+
+(defsrc
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  caps fn
+)
+
+(defalias
+  fnl (layer-while-held fkeys)
+)
+
+(deflayer default
+  brdn brup mctl sls dtn dnd prev pp   next mute vold volu
+  @press @fnl
+)
+
+(deflayer fkeys
+  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _
+)

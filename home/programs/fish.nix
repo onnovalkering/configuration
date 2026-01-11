@@ -7,11 +7,13 @@ _: {
       loginShellInit = builtins.readFile ./fish/shell-login.fish;
 
       shellAbbrs = {
+        b = "bat";
         c = "cargo";
         g = "git";
         k = "kubectl";
         t = "tmux";
         v = "vim";
+        y = "yazi";
       };
 
       shellAliases = {
@@ -74,22 +76,16 @@ _: {
       };
 
       functions = {
-        compress = {
-          body = builtins.readFile ./fish/functions/compress.fish;
-        };
-        decrypt = {
-          body = builtins.readFile ./fish/functions/decrypt.fish;
-        };
-        encrypt = {
-          body = builtins.readFile ./fish/functions/encrypt.fish;
-        };
-        extract = {
-          body = builtins.readFile ./fish/functions/extract.fish;
-        };
-        hash = {
-          body = builtins.readFile ./fish/functions/hash.fish;
+        fish_user_key_bindings = {
+          body = ''
+            bind -M insert \cf end-of-line
+            bind -M insert \ce forward-word
+          '';
         };
       };
     };
   };
+
+  catppuccin.fish.enable = true;
+  catppuccin.fish.flavor = "mocha";
 }

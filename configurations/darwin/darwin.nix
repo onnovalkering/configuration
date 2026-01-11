@@ -45,11 +45,6 @@
         KeyRepeat = 1;
       };
     };
-
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
   };
 
   # Applications to install.
@@ -68,9 +63,7 @@
 
     casks = [
       "ghostty"
-      "rectangle"
       "tailscale-app"
-      "zed"
     ];
   };
 

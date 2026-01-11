@@ -1,0 +1,8 @@
+(defvar
+  tap-timeout   200
+  hold-timeout  200
+)
+
+(defalias
+  press (tap-hold-press $tap-timeout $hold-timeout esc lctl)
+)

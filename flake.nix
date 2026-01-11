@@ -6,6 +6,11 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    catppuccin = {
+      url = "github:catppuccin/nix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +35,7 @@
   outputs =
     {
       self,
+      catppuccin,
       disko,
       home-manager,
       nix-darwin,
@@ -41,6 +47,7 @@
     let
       system-dev = "aarch64-darwin";
       pkgs-dev = nixpkgs-unstable.legacyPackages.${system-dev};
+      catppuccin-hm = catppuccin.homeModules.catppuccin;
     in
     {
       darwinConfigurations =
@@ -53,11 +60,14 @@
             inherit system;
             specialArgs = {
               hostName = "macbook-pro";
+              inherit catppuccin-hm;
               inherit pkgs-unstable;
             };
             modules = [
               ./configurations/darwin/darwin.nix
               ./configurations/darwin/launch-agents
+              ./configurations/darwin/launch-daemons
+              ./configurations/darwin/services
               home-manager.darwinModules.home-manager
               ./home/config.nix
             ];
@@ -74,6 +84,7 @@
             inherit system;
             specialArgs = {
               hostName = "server-vesta";
+              inherit catppuccin-hm;
               inherit pkgs-unstable;
             };
             modules = [
@@ -92,6 +103,7 @@
             inherit system;
             specialArgs = {
               hostName = "server-vulcan";
+              inherit catppuccin-hm;
               inherit pkgs-unstable;
             };
             modules = [

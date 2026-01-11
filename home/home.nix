@@ -1,11 +1,15 @@
 { pkgs, ... }:
 {
   imports = [
+    ./programs/bat.nix
+    ./programs/bottom.nix
     ./programs/direnv.nix
     ./programs/fish.nix
     ./programs/git.nix
+    ./programs/nvim.nix
     ./programs/ssh.nix
     ./programs/tmux.nix
+    ./programs/yazi.nix
   ];
 
   home = {
@@ -14,6 +18,7 @@
     stateVersion = "25.11";
 
     sessionVariables = {
+      EDITOR = "nvim";
       TERM = "xterm";
     };
 
@@ -22,14 +27,12 @@
     packages = with pkgs; [
       ansible
       aria2
-      bat
       colordiff
       coreutils
       csvkit
       curl
       dig
       findutils
-      flyctl
       gawk
       gnumake
       gnupg
@@ -49,5 +52,12 @@
       wget
       zoxide
     ];
+  };
+
+  xdg.configFile = {
+    "kanata/internal.kbd".source = ./files/kanata/internal.kbd;
+    "kanata/mx-keys.kbd".source = ./files/kanata/mx-keys.kbd;
+    "kanata/shared.kbd".source = ./files/kanata/shared.kbd;
+    "ghostty/config".source = ./files/ghostty/config;
   };
 }

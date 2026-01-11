@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  catppuccin-hm,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (pkgs.stdenv) isDarwin isLinux;
 in
@@ -7,6 +12,8 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     users.onno = import ./home.nix;
+
+    sharedModules = [ catppuccin-hm ];
   };
 
   users.users.onno = lib.mkMerge [

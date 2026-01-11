@@ -1,0 +1,5 @@
+theme = Catppuccin Mocha
+font-size = 14
+mouse-hide-while-typing = true
+title = " "
+macos-titlebar-proxy-icon = hidden

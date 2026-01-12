@@ -11,7 +11,16 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.onno = import ./home.nix;
+    users.onno = {
+      imports = [ ./home.nix ];
+
+      xdg.configFile = lib.mkIf isDarwin {
+        "ghostty/config".source = ./files/ghostty/config;
+        "kanata/internal.kbd".source = ./files/kanata/internal.kbd;
+        "kanata/mx-keys.kbd".source = ./files/kanata/mx-keys.kbd;
+        "kanata/shared.kbd".source = ./files/kanata/shared.kbd;
+      };
+    };
 
     sharedModules = [ catppuccin-hm ];
   };

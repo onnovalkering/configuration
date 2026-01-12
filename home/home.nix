@@ -53,11 +53,4 @@
       zoxide
     ];
   };
-
-  xdg.configFile = {
-    "kanata/internal.kbd".source = ./files/kanata/internal.kbd;
-    "kanata/mx-keys.kbd".source = ./files/kanata/mx-keys.kbd;
-    "kanata/shared.kbd".source = ./files/kanata/shared.kbd;
-    "ghostty/config".source = ./files/ghostty/config;
-  };
 }

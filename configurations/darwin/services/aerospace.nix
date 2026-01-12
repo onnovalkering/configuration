@@ -58,6 +58,10 @@
 
       on-window-detected = [
         {
+          "if".app-id = "com.apple.finder";
+          run = "layout floating";
+        }
+        {
           "if".app-id = "com.apple.Passwords";
           run = "layout floating";
         }

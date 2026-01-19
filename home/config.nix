@@ -1,7 +1,8 @@
 {
   catppuccin-hm,
-  pkgs,
   lib,
+  pkgs,
+  pkgs-unstable,
   ...
 }:
 let
@@ -9,13 +10,16 @@ let
 in
 {
   home-manager = {
+    extraSpecialArgs = {
+      inherit pkgs-unstable;
+    };
+
     useGlobalPkgs = true;
     useUserPackages = true;
     users.onno = {
       imports = [ ./home.nix ];
 
       xdg.configFile = lib.mkIf isDarwin {
-        "ghostty/config".source = ./files/ghostty/config;
         "kanata/internal.kbd".source = ./files/kanata/internal.kbd;
         "kanata/mx-keys.kbd".source = ./files/kanata/mx-keys.kbd;
         "kanata/shared.kbd".source = ./files/kanata/shared.kbd;
@@ -36,7 +40,7 @@ in
       home = "/Users/onno";
     })
 
-    # NixOS-specific configuration.
+    # Linux-specific configuration.
     (lib.mkIf isLinux {
       extraGroups = [
         "incus-admin"

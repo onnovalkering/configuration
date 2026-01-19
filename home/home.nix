@@ -1,16 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./programs/bat.nix
-    ./programs/bottom.nix
-    ./programs/direnv.nix
-    ./programs/fish.nix
-    ./programs/git.nix
-    ./programs/nvim.nix
-    ./programs/ssh.nix
-    ./programs/tmux.nix
-    ./programs/yazi.nix
-  ];
+  imports = [ ./programs ];
 
   home = {
     username = "onno";
@@ -34,6 +24,7 @@
       dig
       findutils
       gawk
+      gh
       gnumake
       gnupg
       gnused

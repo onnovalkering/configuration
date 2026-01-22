@@ -46,6 +46,18 @@
         alt-shift-l = "move right";
 
         alt-shift-space = "layout floating tiling";
+
+        alt-r = "mode resize";
+      };
+
+      mode.resize.binding = {
+        h = "resize width -50";
+        j = "resize height +50";
+        k = "resize height -50";
+        l = "resize width +50";
+
+        enter = "mode main";
+        esc = "mode main";
       };
 
       workspace-to-monitor-force-assignment = {

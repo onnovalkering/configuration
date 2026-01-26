@@ -8,7 +8,7 @@
     ./ghostty.nix
     ./git.nix
     ./lazygit.nix
-    ./nvim.nix
+    ./neovim.nix
     ./opencode.nix
     ./ssh.nix
     ./tmux.nix

@@ -74,6 +74,10 @@
           run = "layout floating";
         }
         {
+          "if".app-id = "com.apple.Home";
+          run = "layout floating";
+        }
+        {
           "if".app-id = "com.apple.Passwords";
           run = "layout floating";
         }

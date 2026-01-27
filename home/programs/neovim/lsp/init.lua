@@ -2,6 +2,7 @@ local M = {}
 
 M.capabilities = require("blink.cmp").get_lsp_capabilities()
 
+---@diagnostic disable-next-line: unused-local
 M.on_attach = function(client, bufnr)
   local map = function(keys, func, desc)
       vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
@@ -24,9 +25,9 @@ M.on_attach = function(client, bufnr)
   map("<leader>lf", vim.lsp.buf.format, "Format buffer")
 
   -- Diagnostics
-  map("[d", vim.diagnostics.goto_prev, "Previous diagnostics")
-  map("]d", vim.diagnostics.goto_next, "Next diagnostics")
-  map("<leader>ld", vim.diagnostics.open_float, "Line diagnostics")
+  map("[d", vim.diagnostic.jump({ count = -1 }), "Previous diagnostics")
+  map("]d", vim.diagnostic.jump({ count = 1 }), "Next diagnostics")
+  map("<leader>ld", vim.diagnostic.open_float, "Line diagnostics")
 end
 
 -- Diagnostics
@@ -36,11 +37,12 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   severity_sort = true,
-  float = { border = "rounded", source = "always" },
+  float = { border = "rounded", source = true },
 })
 
 -- Languages
+require("lsp.lua").setup(M)
+require("lsp.nix").setup(M)
 require("lsp.python").setup(M)
 require("lsp.rust").setup(M)
-require("lsp.nix").setup(M)
 

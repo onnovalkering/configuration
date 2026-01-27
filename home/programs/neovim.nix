@@ -48,6 +48,9 @@
     ];
 
     extraPackages = with pkgs; [
+      # Lua
+      lua-language-server
+
       # Python
       basedpyright
       ruff

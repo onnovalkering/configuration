@@ -61,7 +61,7 @@
     };
 
     brews = [
-      "incus"
+      "opencode"
     ];
 
     casks = [

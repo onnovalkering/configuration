@@ -1,8 +1,7 @@
-{ pkgs-unstable, ... }:
-{
+_: {
   programs.opencode = {
     enable = true;
-    package = pkgs-unstable.opencode;
+    package = null;
 
     settings = {
       autoupdate = false;

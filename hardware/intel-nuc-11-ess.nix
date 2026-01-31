@@ -21,6 +21,11 @@
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
 
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
     graphics = {
       enable = true;
       extraPackages = with pkgs; [

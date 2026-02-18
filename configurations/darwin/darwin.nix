@@ -60,8 +60,12 @@
       upgrade = true;
     };
 
+    taps = [
+      "anomalyco/tap"
+    ];
+
     brews = [
-      "opencode"
+      "anomalyco/tap/opencode"
     ];
 
     casks = [

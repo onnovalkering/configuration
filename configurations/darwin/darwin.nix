@@ -69,6 +69,7 @@
     ];
 
     casks = [
+      "antigravity"
       "ghostty"
       "tailscale-app"
     ];
@@ -78,7 +79,6 @@
   environment = with pkgs; {
     systemPackages = [
       bun
-      pyenv
       rustup
     ];
   };

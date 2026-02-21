@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +44,7 @@
       disko,
       home-manager,
       nix-darwin,
+      nixos-wsl,
       nixpkgs,
       nixpkgs-unstable,
       pre-commit-hooks,
@@ -53,7 +59,7 @@
       darwinConfigurations =
         let
           system = "aarch64-darwin";
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
         in
         {
           macbook-pro = nix-darwin.lib.darwinSystem {
@@ -77,7 +83,7 @@
       nixosConfigurations =
         let
           system = "x86_64-linux";
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system}.pkgs;
+          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
         in
         {
           server-vesta = nixpkgs.lib.nixosSystem {
@@ -99,20 +105,16 @@
             ];
           };
 
-          server-vulcan = nixpkgs.lib.nixosSystem {
+          wsl-nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
-              hostName = "server-vulcan";
+              hostName = "wsl-nixos";
               inherit catppuccin-hm;
               inherit pkgs-unstable;
             };
             modules = [
-              disko.nixosModules.disko
-              ./hardware/intel-aipc-devkit.nix
-              ./configurations/nixos/nixos.nix
-              ./configurations/nixos/services/openssh.nix
-              ./configurations/nixos/services/incus.nix
-              ./configurations/nixos/services/tailscale.nix
+              nixos-wsl.nixosModules.default
+              ./configurations/wsl/wsl.nix
               home-manager.nixosModules.home-manager
               ./home/config.nix
             ];

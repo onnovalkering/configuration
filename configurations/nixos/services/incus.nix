@@ -8,6 +8,8 @@
     package = pkgs-unstable.incus;
   };
 
+  users.users.onno.extraGroups = [ "incus-admin" ];
+
   networking.firewall = {
     trustedInterfaces = [
       "incusbr0"

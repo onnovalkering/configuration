@@ -18,7 +18,3 @@ for path in $optional_paths
   end
 end
 
-# Initialize `pyenv` only if it's available.
-if type -q pyenv
-  pyenv init - fish | source
-end

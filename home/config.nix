@@ -43,7 +43,6 @@ in
     # Linux-specific configuration.
     (lib.mkIf isLinux {
       extraGroups = [
-        "incus-admin"
         "wheel"
       ];
       home = "/home/onno";

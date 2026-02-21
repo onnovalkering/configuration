@@ -41,6 +41,7 @@ _: {
 
       ignores = [
         ".DS_Store"
+        ".agents"
         ".env"
       ];
     };

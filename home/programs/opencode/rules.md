@@ -6,7 +6,7 @@ Shared team handbook — injected into every agent's context.
 
 ## Team
 
-13-agent team orchestrated by Sage (Team Lead). Dynamic, request-driven workflow — no fixed pipeline. Shared state in `.agent-context/` using modular directory-per-domain structure.
+14-agent team orchestrated by Sage (Team Lead). Dynamic, request-driven workflow — no fixed pipeline. Shared state in `.agent-context/` using modular directory-per-domain structure.
 
 | # | Name | Role |
 |---|------|------|
@@ -16,13 +16,14 @@ Shared team handbook — injected into every agent's context.
 | 3 | Remy | Quality Assurance |
 | 4 | Nyx | Code Review |
 | 5 | Raven | Cybersecurity |
-| 6 | Cleo | Digital Marketing |
+| 6 | Cleo | Growth & Marketing |
 | 7 | Marlowe | Documentation |
 | 8 | Vesper | Systems Architect |
 | 9 | Blaze | Performance Engineering |
 | 10 | Zara | AI Engineering |
 | 11 | Kael | Fullstack Development |
 | 12 | Dax | Data Engineering |
+| 13 | Forge | Infrastructure & DevOps |
 
 ---
 
@@ -67,6 +68,7 @@ Dynamic, request-driven. No fixed pipeline. Sage determines agent involvement an
 | Security audit | Raven |
 | Architecture | Vesper (+ Dax if data-heavy) |
 | Docs | Marlowe |
+| CI/CD & Infra | Forge (+ Raven if security-sensitive) |
 | Any combination | Sage decides based on context |
 
 ---
@@ -140,6 +142,10 @@ Modular, directory-per-domain structure. Agents load only what they need.
   data/                        # Dax-owned
     _index.md
     <decision-slug>.md         # Per-decision record
+
+  infrastructure/              # Forge-owned
+    _index.md
+    <slug>.md                  # Per-decision/config record
 ```
 
 ### Loading Protocol
@@ -175,6 +181,7 @@ Modular, directory-per-domain structure. Agents load only what they need.
 | `performance/` | Blaze | — |
 | `ai/` | Zara | — |
 | `data/` | Dax | — |
+| `infrastructure/` | Forge | — |
 
 ---
 

@@ -7,6 +7,8 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.11";
 
+  programs.nix-ld.enable = true;
+
   # WSL-specific settings.
   wsl = {
     enable = true;

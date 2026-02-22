@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   programs = {
     git = {
       enable = true;
@@ -18,8 +19,8 @@ _: {
           develop = "checkout develop";
         };
         core = {
-          editor = "/usr/bin/vim";
-          sshCommand = "/usr/bin/ssh";
+          editor = "${pkgs.vim}/bin/vim";
+          sshCommand = "${pkgs.openssh}/bin/ssh";
         };
         format = {
           pretty = "format:%C(yellow)%h %Cblue%>(20)%ad %Cgreen%<(15)%aN%Cred%d %Creset%s";

@@ -97,6 +97,7 @@
               disko.nixosModules.disko
               ./hardware/intel-nuc-11-ess.nix
               ./configurations/nixos/nixos.nix
+              ./configurations/nixos/containers/owndns.nix
               ./configurations/nixos/services/kubernetes.nix
               ./configurations/nixos/services/openssh.nix
               ./configurations/nixos/services/tailscale.nix

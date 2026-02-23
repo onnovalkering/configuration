@@ -24,6 +24,10 @@
   time.timeZone = "Europe/Amsterdam";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Virtualisation
+  virtualisation.podman.enable = true;
+  virtualisation.oci-containers.backend = "podman";
+
   # Configure networking.
   networking = {
     inherit hostName;

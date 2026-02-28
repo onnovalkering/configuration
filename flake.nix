@@ -1,5 +1,5 @@
 {
-  description = "A flake for my Nix configuration on macOS and NixOS";
+  description = "My Nix configuration for reproducible and declarative systems.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +32,7 @@
     };
 
     nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/release-25.11";
+      url = "github:nix-community/nixos-wsl/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,108 +43,46 @@
   };
 
   outputs =
-    {
-      self,
-      catppuccin,
-      disko,
-      home-manager,
-      nix-darwin,
-      nixos-wsl,
-      nixpkgs,
-      nixpkgs-unstable,
-      pre-commit-hooks,
-      ...
-    }:
-    let
-      system-dev = "aarch64-darwin";
-      pkgs-dev = nixpkgs-unstable.legacyPackages.${system-dev};
-      catppuccin-hm = catppuccin.homeModules.catppuccin;
-    in
-    {
-      darwinConfigurations =
-        let
-          system = "aarch64-darwin";
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-        in
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
+
+      imports = [
+        ./hosts/elitebook.nix
+        ./hosts/macbook-pro.nix
+        ./hosts/server-vesta.nix
+      ];
+
+      perSystem =
         {
-          macbook-pro = nix-darwin.lib.darwinSystem {
-            inherit system;
-            specialArgs = {
-              hostName = "macbook-pro";
-              inherit catppuccin-hm;
-              inherit pkgs-unstable;
-            };
-            modules = [
-              ./configurations/darwin/darwin.nix
-              ./configurations/darwin/launch-agents
-              ./configurations/darwin/launch-daemons
-              ./configurations/darwin/services
-              home-manager.darwinModules.home-manager
-              ./home/config.nix
-            ];
-          };
-        };
-
-      nixosConfigurations =
-        let
-          system = "x86_64-linux";
-          pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
-        in
+          config,
+          pkgs,
+          system,
+          ...
+        }:
         {
-          server-vesta = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              hostName = "server-vesta";
-              inherit catppuccin-hm;
-              inherit pkgs-unstable;
+          checks.pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              deadnix.enable = true;
+              nixfmt-rfc-style.enable = true;
+              statix.enable = true;
             };
-            modules = [
-              disko.nixosModules.disko
-              ./hardware/intel-nuc-11-ess.nix
-              ./configurations/nixos/nixos.nix
-              ./configurations/nixos/containers/owndns.nix
-              ./configurations/nixos/services/kubernetes.nix
-              ./configurations/nixos/services/openssh.nix
-              ./configurations/nixos/services/tailscale.nix
-              home-manager.nixosModules.home-manager
-              ./home/config.nix
-            ];
           };
 
-          wsl-nixos = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              hostName = "wsl-nixos";
-              inherit catppuccin-hm;
-              inherit pkgs-unstable;
-            };
-            modules = [
-              nixos-wsl.nixosModules.default
-              ./configurations/wsl/wsl.nix
-              home-manager.nixosModules.home-manager
-              ./home/config.nix
+          devShells.default = pkgs.mkShell {
+            inherit (config.checks.pre-commit-check) shellHook;
+
+            buildInputs = with pkgs; [
+              deadnix
+              nil
+              nixfmt-rfc-style
+              statix
             ];
           };
         };
-
-      checks.${system-dev}.pre-commit-check = pre-commit-hooks.lib.${system-dev}.run {
-        src = ./.;
-        hooks = {
-          deadnix.enable = true;
-          nixfmt-rfc-style.enable = true;
-          statix.enable = true;
-        };
-      };
-
-      devShells.${system-dev}.default = pkgs-dev.mkShell {
-        inherit (self.checks.${system-dev}.pre-commit-check) shellHook;
-
-        buildInputs = with pkgs-dev; [
-          deadnix
-          nil
-          nixfmt-rfc-style
-          statix
-        ];
-      };
     };
 }

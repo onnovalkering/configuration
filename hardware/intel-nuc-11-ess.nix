@@ -15,6 +15,11 @@
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_6_18;
     kernelParams = [ ];
+
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   hardware = {
@@ -32,6 +37,10 @@
         intel-media-driver
       ];
     };
+  };
+
+  networking = {
+    interfaces.eth0.useDHCP = true;
   };
 
   disko.devices = {

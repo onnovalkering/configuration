@@ -24,6 +24,7 @@
       dig
       findutils
       gawk
+      gemini-cli
       gh
       gnumake
       gnupg

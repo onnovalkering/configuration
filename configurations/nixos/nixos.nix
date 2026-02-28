@@ -1,4 +1,11 @@
-{ pkgs, hostName, ... }:
+{
+  pkgs,
+  hostName,
+  lib,
+  enableFirewall,
+  enableAutoUpgrade,
+  ...
+}:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -7,17 +14,10 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.11";
 
-  # Configure bootloader and kernel parameters.
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
-    kernel.sysctl = {
-      "net.ipv4.ip_forward" = 1;
-      "net.ipv6.conf.all.forwarding" = 1;
-    };
+  # Configure kernel parameters.
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
   };
 
   # Configure time and i18n.
@@ -31,10 +31,8 @@
   # Configure networking.
   networking = {
     inherit hostName;
-    firewall.enable = true;
-    nftables.enable = true;
-
-    interfaces.eth0.useDHCP = true;
+    firewall.enable = enableFirewall;
+    nftables.enable = enableFirewall;
   };
 
   # Configure security.
@@ -54,7 +52,7 @@
   };
 
   # Enable automatic upgrades of the system.
-  system.autoUpgrade = {
+  system.autoUpgrade = lib.mkIf enableAutoUpgrade {
     enable = true;
     allowReboot = true;
     flake = "github:onnovalkering/configuration";

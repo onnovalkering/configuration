@@ -1,7 +1,7 @@
 _: {
-  virtualisation.oci-containers = {
-    containers.owndns = {
-      image = "ghcr.io/onnovalkering/owndns:latest";
+  virtualisation.oci-containers.containers = {
+    owndns = {
+      image = "ghcr.io/onnovalkering/owndns:0.1.0";
       ports = [
         "53:53/tcp"
         "53:53/udp"

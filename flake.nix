@@ -68,8 +68,12 @@
             src = ./.;
             hooks = {
               deadnix.enable = true;
+              luacheck.enable = true;
               nixfmt-rfc-style.enable = true;
+              prettier.enable = true;
+              shellcheck.enable = true;
               statix.enable = true;
+              typos.enable = true;
             };
           };
 

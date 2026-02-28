@@ -22,9 +22,9 @@ in
         disko
         "${self}/hardware/intel-nuc-11-ess.nix"
         "${self}/configurations/nixos/nixos.nix"
-        "${self}/configurations/nixos/containers/owndns.nix"
+        "${self}/configurations/nixos/containers/homebridge.nix"
         "${self}/configurations/nixos/containers/jellyfin.nix"
-        "${self}/configurations/nixos/services/kubernetes.nix"
+        "${self}/configurations/nixos/containers/owndns.nix"
         "${self}/configurations/nixos/services/openssh.nix"
         "${self}/configurations/nixos/services/tailscale.nix"
         home-manager

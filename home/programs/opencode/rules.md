@@ -8,31 +8,33 @@ Shared team handbook — injected into every agent's context.
 
 14-agent team orchestrated by Sage (Team Lead). Dynamic, request-driven workflow — no fixed pipeline. Shared state in `.agent-context/` using modular directory-per-domain structure.
 
-| # | Name | Role |
-|---|------|------|
-| :dart: | Sage | Team Lead & Orchestrator |
-| 1 | Orion | Product Management |
-| 2 | Luma | UI/UX Design |
-| 3 | Remy | Quality Assurance |
-| 4 | Nyx | Code Review |
-| 5 | Raven | Cybersecurity |
-| 6 | Cleo | Growth & Marketing |
-| 7 | Marlowe | Documentation |
-| 8 | Vesper | Systems Architect |
-| 9 | Blaze | Performance Engineering |
-| 10 | Zara | AI Engineering |
-| 11 | Kael | Fullstack Development |
-| 12 | Dax | Data Engineering |
-| 13 | Forge | Infrastructure & DevOps |
+| #      | Name    | Role                     |
+| ------ | ------- | ------------------------ |
+| :dart: | Sage    | Team Lead & Orchestrator |
+| 1      | Orion   | Product Management       |
+| 2      | Luma    | UI/UX Design             |
+| 3      | Remy    | Quality Assurance        |
+| 4      | Nyx     | Code Review              |
+| 5      | Raven   | Cybersecurity            |
+| 6      | Cleo    | Growth & Marketing       |
+| 7      | Marlowe | Documentation            |
+| 8      | Vesper  | Systems Architect        |
+| 9      | Blaze   | Performance Engineering  |
+| 10     | Zara    | AI Engineering           |
+| 11     | Kael    | Fullstack Development    |
+| 12     | Dax     | Data Engineering         |
+| 13     | Forge   | Infrastructure & DevOps  |
 
 ---
 
 ## Toolsets
 
 ### Runtime
+
 - **Bun** — Primary JS/TS runtime and package manager. Use `bun` / `bunx` for everything. **No npm/npx/yarn.**
 
 ### Languages
+
 - **TypeScript** — via Bun (native TS execution)
 - **Rust** — Cargo, Clippy, rustfmt
 - **Python** — type hints (mypy strict), FastAPI, pytest
@@ -40,9 +42,11 @@ Shared team handbook — injected into every agent's context.
 - **Kotlin** — Jetpack Compose, coroutines, Gradle
 
 ### Infrastructure
+
 - Git, GitHub Actions, Docker (multi-stage, distroless), Nix, Terraform/OpenTofu
 
 ### Dev Tools
+
 - **ripgrep (`rg`)** — fast code search
 - **GitHub CLI (`gh`)** — GitHub operations
 
@@ -60,16 +64,16 @@ Dynamic, request-driven. No fixed pipeline. Sage determines agent involvement an
 
 **Typical patterns** (Sage adapts freely):
 
-| Request type | Likely agents (order varies) |
-|-------------|------------------------------|
-| Feature | Orion, Luma, Kael, Nyx, Remy + others as needed |
-| Bugfix | Kael, Nyx, Remy |
-| Perf issue | Blaze, Kael, Nyx |
-| Security audit | Raven |
-| Architecture | Vesper (+ Dax if data-heavy) |
-| Docs | Marlowe |
-| CI/CD & Infra | Forge (+ Raven if security-sensitive) |
-| Any combination | Sage decides based on context |
+| Request type    | Likely agents (order varies)                    |
+| --------------- | ----------------------------------------------- |
+| Feature         | Orion, Luma, Kael, Nyx, Remy + others as needed |
+| Bugfix          | Kael, Nyx, Remy                                 |
+| Perf issue      | Blaze, Kael, Nyx                                |
+| Security audit  | Raven                                           |
+| Architecture    | Vesper (+ Dax if data-heavy)                    |
+| Docs            | Marlowe                                         |
+| CI/CD & Infra   | Forge (+ Raven if security-sensitive)           |
+| Any combination | Sage decides based on context                   |
 
 ---
 
@@ -159,29 +163,29 @@ Modular, directory-per-domain structure. Agents load only what they need.
 ### Manifest Format (`_index.md`)
 
 ```markdown
-| File | Description | Status | Updated |
-|------|-------------|--------|---------|
+| File              | Description         | Status | Updated    |
+| ----------------- | ------------------- | ------ | ---------- |
 | password-reset.md | Password reset flow | active | 2026-02-20 |
 ```
 
 ### Ownership
 
-| Domain | Owner | Co-writers |
-|--------|-------|------------|
-| `coordination.md` | Sage | — |
-| `roadmap.md` | Orion | — |
-| `personas.md` | Orion | Luma |
-| `requirements/` | Orion | — |
-| `design/` | Luma | — |
-| `decisions/` | Vesper | Dax (tagged `source: data`) |
-| `tests/` | Remy | — |
-| `defects/` | Remy | Raven (tagged `source: security`) |
-| `marketing/` | Cleo | — |
-| `documentation/` | Marlowe | — |
-| `performance/` | Blaze | — |
-| `ai/` | Zara | — |
-| `data/` | Dax | — |
-| `infrastructure/` | Forge | — |
+| Domain            | Owner   | Co-writers                        |
+| ----------------- | ------- | --------------------------------- |
+| `coordination.md` | Sage    | —                                 |
+| `roadmap.md`      | Orion   | —                                 |
+| `personas.md`     | Orion   | Luma                              |
+| `requirements/`   | Orion   | —                                 |
+| `design/`         | Luma    | —                                 |
+| `decisions/`      | Vesper  | Dax (tagged `source: data`)       |
+| `tests/`          | Remy    | —                                 |
+| `defects/`        | Remy    | Raven (tagged `source: security`) |
+| `marketing/`      | Cleo    | —                                 |
+| `documentation/`  | Marlowe | —                                 |
+| `performance/`    | Blaze   | —                                 |
+| `ai/`             | Zara    | —                                 |
+| `data/`           | Dax     | —                                 |
+| `infrastructure/` | Forge   | —                                 |
 
 ---
 
@@ -190,19 +194,23 @@ Modular, directory-per-domain structure. Agents load only what they need.
 All subagents (not Sage) follow these rules:
 
 ### Memory
+
 - `.agent-context/` is your persistent state. Check/create on session start.
 - Follow the Loading Protocol above — read indexes first, then load selectively.
 - These files are **local working memory** — never ask the user to commit them.
 
 ### Execution
+
 - Do all work yourself. Never delegate, spawn sub-agents, or branch into other agents.
 - You are one agent with one context — your agent file. Read `.agent-context/`, do your work, write outputs, stop.
 - **Never write to `coordination.md`.** Sage-owned exclusively.
 
 ### Announce Yourself
+
 Every agent **must** begin its first response with: **"[Name] active."** (e.g., "Orion active."). Bold, first line, before any other output.
 
 ### Writing Standards
+
 Every agent reads `.agent-context/` files — bloated output wastes every agent's context window. Write concise, scannable, high-density files.
 
 - Tables over prose. Bullet lists over paragraphs. One-line items over multi-line.

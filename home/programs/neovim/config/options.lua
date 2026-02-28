@@ -54,4 +54,3 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Diff
 opt.diffopt:append("vertical")
-

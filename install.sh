@@ -9,13 +9,13 @@ select_server() {
     while true; do
         echo "Please select a server:"
         for i in "${!servers[@]}"; do
-            echo "$((i+1))) ${servers[$i]}"
+            echo "$((i + 1))) ${servers[$i]}"
         done
         echo ""
         read -r -p "Enter your choice (1-${#servers[@]}): " choice
 
-        if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#servers[@]}" ]; then
-            HOST_NAME="${servers[$((choice-1))]}"
+        if [[ $choice =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#servers[@]}" ]; then
+            HOST_NAME="${servers[$((choice - 1))]}"
             break
         else
             echo "Invalid choice. Please try again."

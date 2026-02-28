@@ -1,0 +1,11 @@
+[files]
+extend-exclude = [
+  "**/opencode/**/*.md"
+]
+
+[type.fish-nix]
+extend-glob = ["fish.nix"]
+
+[type.fish-nix.extend-words]
+kno = "kno"
+

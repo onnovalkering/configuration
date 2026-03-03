@@ -1,4 +1,19 @@
 { pkgs-unstable, ... }:
+let
+  floatingApps = [
+    "com.apple.ActivityMonitor"
+    "com.apple.Home"
+    "com.apple.Passwords"
+    "com.apple.Terminal"
+    "com.apple.finder"
+    "com.apple.reminders"
+  ];
+
+  mkFloating = appId: {
+    "if".app-id = appId;
+    run = "layout floating";
+  };
+in
 {
   services.aerospace = {
     enable = true;
@@ -68,24 +83,7 @@
         "5" = "secondary";
       };
 
-      on-window-detected = [
-        {
-          "if".app-id = "com.apple.finder";
-          run = "layout floating";
-        }
-        {
-          "if".app-id = "com.apple.Home";
-          run = "layout floating";
-        }
-        {
-          "if".app-id = "com.apple.Passwords";
-          run = "layout floating";
-        }
-        {
-          "if".app-id = "com.apple.ActivityMonitor";
-          run = "layout floating";
-        }
-      ];
+      on-window-detected = map mkFloating floatingApps;
     };
   };
 }

@@ -21,6 +21,10 @@ _: {
     jellyfin = {
       image = "jellyfin/jellyfin:2026022305";
       dependsOn = [ "ts-jellyfin" ];
+      devices = [
+        "/dev/dri/renderD128:/dev/dri/renderD128"
+        "/dev/dri/card0:/dev/dri/card0"
+      ];
       environment = {
         JELLYFIN_PublishedServerUrl = "https://jellyfin.stargazer-ulmer.ts.net";
       };
@@ -31,6 +35,8 @@ _: {
       ];
       extraOptions = [
         "--network=container:ts-jellyfin"
+        "--group-add=303" # render
+        "--group-add=27" # video
       ];
     };
   };

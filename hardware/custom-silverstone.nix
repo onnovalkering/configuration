@@ -3,6 +3,7 @@
   boot = {
     initrd = {
       availableKernelModules = [
+        "ahci"
         "nvme"
         "sd_mod"
         "sdhci_pci"
@@ -15,9 +16,8 @@
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_6_18;
     kernelParams = [
-      "i915.enable_guc=2"
-      "vm.page-cluster=0"
       "vm.swappiness=180"
+      "vm.page-cluster=0"
     ];
 
     loader = {
@@ -29,26 +29,12 @@
   hardware = {
     cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
-
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-compute-runtime
-        intel-media-driver
-        vpl-gpu-rt
-      ];
-    };
   };
 
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 60;
+    memoryPercent = 50;
     priority = 100;
   };
 
@@ -83,11 +69,29 @@
               };
             };
             swap = {
-              size = "2G";
+              size = "4G";
               content = {
                 type = "swap";
+                discardPolicy = "both";
                 randomEncryption = true;
                 priority = 5;
+              };
+            };
+          };
+        };
+      };
+      storage = {
+        type = "disk";
+        device = "/dev/sda";
+        content = {
+          type = "gpt";
+          partitions = {
+            data = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/mnt/storage";
               };
             };
           };

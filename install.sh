@@ -3,7 +3,7 @@
 set -euo pipefail
 
 select_server() {
-    local servers=("server-vesta")
+    local servers=("server-vesta" "server-vulcan")
     local choice
 
     while true; do

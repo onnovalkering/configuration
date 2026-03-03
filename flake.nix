@@ -55,6 +55,7 @@
         ./hosts/elitebook.nix
         ./hosts/macbook-pro.nix
         ./hosts/server-vesta.nix
+        ./hosts/server-vulcan.nix
       ];
     };
 }

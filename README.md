@@ -2,7 +2,7 @@
 
 This repository contains my Nix configurations for reproducible and declarative systems.
 
-## Darwin
+## macOS
 
 To apply or update the system, run the following command:
 

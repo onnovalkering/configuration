@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+  sshCommand = if isDarwin then "/usr/bin/ssh" else "${pkgs.openssh}bin/ssh";
+in
 {
   programs = {
     git = {
@@ -20,7 +24,7 @@
         };
         core = {
           editor = "${pkgs.vim}/bin/vim";
-          sshCommand = "${pkgs.openssh}/bin/ssh";
+          inherit sshCommand;
         };
         format = {
           pretty = "format:%C(yellow)%h %Cblue%>(20)%ad %Cgreen%<(15)%aN%Cred%d %Creset%s";

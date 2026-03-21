@@ -25,8 +25,12 @@ M.on_attach = function(_, bufnr)
     map("<leader>lf", vim.lsp.buf.format, "Format buffer")
 
     -- Diagnostics
-    map("[d", vim.diagnostic.jump({ count = -1 }), "Previous diagnostics")
-    map("]d", vim.diagnostic.jump({ count = 1 }), "Next diagnostics")
+    map("[d", function()
+        vim.diagnostic.jump({ count = -1 })
+    end, "Previous diagnostics")
+    map("]d", function()
+        vim.diagnostic.jump({ count = 1 })
+    end, "Next diagnostics")
     map("<leader>ld", vim.diagnostic.open_float, "Line diagnostics")
 end
 
@@ -44,4 +48,5 @@ vim.diagnostic.config({
 require("lsp.lua").setup(M)
 require("lsp.nix").setup(M)
 require("lsp.python").setup(M)
+require("lsp.rescript").setup(M)
 require("lsp.rust").setup(M)

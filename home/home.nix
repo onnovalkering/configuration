@@ -15,6 +15,7 @@
     file.".hushlogin".text = "";
 
     packages = with pkgs; [
+      age
       ansible
       aria2
       colordiff

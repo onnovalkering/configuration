@@ -66,6 +66,8 @@
 
     brews = [
       "anomalyco/tap/opencode"
+      "ykman"
+      "yubico-piv-tool"
     ];
 
     casks = [

@@ -8,10 +8,9 @@ No commentary. No explanation. No tool calls. Do not run git commit. Do not stag
 
 ## Recent commits
 
-!`git log --oneline -15`
+!`git log --format="%B" -10`
 
 Match the tone, casing, and scope conventions of this project's recent commits.
-This only applies to the subject line of the git commit message, not the body.
 
 ## Staged diff
 
@@ -30,14 +29,14 @@ This only applies to the subject line of the git commit message, not the body.
 - `<type>(<scope>): <imperative summary>` — `<scope>` optional
 - Types: `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `chore`, `build`, `ci`, `style`, `revert`
 - Imperative mood: "add", "fix", "remove" — not "added", "adds", "adding"
-- <=50 chars when possible, hard cap 72
+- <=50 chars when possible, hard cap on 80 chars
 - No trailing period
 
 **Body:**
 
-- Always include a body
-- Terse. Why over what. One to three lines max.
-- Wrap at 72 chars
+- Include a body when the why or context isn't obvious from the diff or subject.
+- **Terse**. Why over what. One to three lines max.
+- Wrap at 80 chars
 - Bullets `-` not `*`
 - Reference issues/PRs at end: `Closes #42`, `Refs #17`
 

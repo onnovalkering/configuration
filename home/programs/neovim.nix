@@ -58,6 +58,9 @@
       # Yank
       yanky-nvim
 
+      # Hardtime
+      hardtime-nvim
+
       # Tmux integration
       vim-tmux-navigator
     ];

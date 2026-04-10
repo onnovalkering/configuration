@@ -5,6 +5,10 @@ _: {
 
     rules = ./opencode/rules.md;
 
+    commands = {
+      generate-commit-message = ./opencode/commands/generate-commit-message.md;
+    };
+
     agents = {
       ai-engineering = ./opencode/agents/ai_engineering.md;
       code-review = ./opencode/agents/code_review.md;

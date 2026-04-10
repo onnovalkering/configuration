@@ -82,6 +82,11 @@ _: {
             bind -M insert \ce forward-word
           '';
         };
+
+        generate-commit-message = {
+          description = "Generate a commit message from staged changes using AI.";
+          body = builtins.readFile ./fish/functions/generate-commit-message.fish;
+        };
       };
     };
   };

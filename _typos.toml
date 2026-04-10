@@ -1,7 +1,16 @@
 [files]
 extend-exclude = [
+  "**/neovim/**/*.md",
   "**/opencode/**/*.md"
 ]
+
+[default.extend-words]
+noice = "noice"
+
+[type.lua.extend-words]
+daa = "daa"
+enew = "enew"
+nd = "nd"
 
 [type.nix.extend-words]
 kno = "kno"

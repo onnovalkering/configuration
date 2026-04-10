@@ -25,9 +25,9 @@
       gitsigns-nvim
       aerial-nvim
       trouble-nvim
+      harpoon2
 
       # LSP & Completion
-      nvim-lspconfig
       blink-cmp
       friendly-snippets
       lazydev-nvim
@@ -42,6 +42,21 @@
       indent-blankline-nvim
       todo-comments-nvim
       conform-nvim
+      noice-nvim
+      nui-nvim
+      nvim-notify
+      render-markdown-nvim
+
+      # Git
+      diffview-nvim
+
+      # Debug
+      nvim-dap
+      nvim-dap-ui
+      nvim-dap-virtual-text
+
+      # Yank
+      yanky-nvim
 
       # Tmux integration
       vim-tmux-navigator
@@ -61,6 +76,30 @@
       # Nix
       nil
       nixfmt-rfc-style
+
+      # TypeScript / JavaScript
+      nodejs-slim_22
+      nodePackages.typescript-language-server
+
+      # Bash
+      nodePackages.bash-language-server
+      shfmt
+
+      # JSON + HTML + CSS (vscode-langservers-extracted)
+      vscode-langservers-extracted
+
+      # YAML
+      nodePackages.yaml-language-server
+
+      # Gleam
+      gleam
+
+      # SQL
+      sqls
+
+      # Formatting
+      nodePackages.prettier
+      stylua
     ];
 
     extraLuaConfig = ''

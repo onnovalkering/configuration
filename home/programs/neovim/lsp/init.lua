@@ -17,12 +17,11 @@ M.on_attach = function(_, bufnr)
 
     -- Information
     map("K", vim.lsp.buf.hover, "Hover documentation")
-    map("<C-k>", vim.lsp.buf.signature_help, "Signature help")
+    map("<leader>lh", vim.lsp.buf.signature_help, "Signature help")
 
     -- Actions
     map("<leader>lr", vim.lsp.buf.rename, "Rename symbol")
     map("<leader>la", vim.lsp.buf.code_action, "Code action")
-    map("<leader>lf", vim.lsp.buf.format, "Format buffer")
 
     -- Diagnostics
     map("[d", function()
@@ -50,3 +49,11 @@ require("lsp.nix").setup(M)
 require("lsp.python").setup(M)
 require("lsp.rescript").setup(M)
 require("lsp.rust").setup(M)
+require("lsp.typescript").setup(M)
+require("lsp.gleam").setup(M)
+require("lsp.bash").setup(M)
+require("lsp.web").setup(M)
+require("lsp.yaml").setup(M)
+require("lsp.sql").setup(M)
+
+return M

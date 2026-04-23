@@ -83,10 +83,30 @@ _: {
           '';
         };
 
+        decrypt = {
+          description = "Decrypt a file using age.";
+          body = builtins.readFile ./fish/functions/decrypt.fish;
+        };
+
+        encrypt = {
+          description = "Encrypt a file using age.";
+          body = builtins.readFile ./fish/functions/encrypt.fish;
+        };
+
         generate-commit-message = {
           description = "Generate a commit message from staged changes using AI.";
           body = builtins.readFile ./fish/functions/generate-commit-message.fish;
         };
+      };
+
+      completions = {
+        encrypt.body = ''
+          complete -c encrypt -F
+        '';
+
+        decrypt.body = ''
+          complete -c decrypt -x -a '(__fish_complete_path | string trim | string match -re "\.age\$|/\$")'
+        '';
       };
     };
   };

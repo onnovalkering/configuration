@@ -5,7 +5,7 @@
   home = {
     username = "onno";
     keyboard.layout = "us";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
 
     sessionVariables = {
       EDITOR = "nvim";

@@ -1,7 +1,6 @@
 _: {
   programs.opencode = {
     enable = true;
-    package = null;
 
     rules = ./opencode/rules.md;
 

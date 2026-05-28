@@ -78,21 +78,21 @@
 
       # Nix
       nil
-      nixfmt-rfc-style
+      nixfmt
 
       # TypeScript / JavaScript
       nodejs-slim_22
-      nodePackages.typescript-language-server
+      typescript-language-server
 
       # Bash
-      nodePackages.bash-language-server
+      bash-language-server
       shfmt
 
       # JSON + HTML + CSS (vscode-langservers-extracted)
       vscode-langservers-extracted
 
       # YAML
-      nodePackages.yaml-language-server
+      yaml-language-server
 
       # Gleam
       gleam
@@ -101,7 +101,7 @@
       sqls
 
       # Formatting
-      nodePackages.prettier
+      prettier
       stylua
     ];
 

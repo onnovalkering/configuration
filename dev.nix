@@ -13,7 +13,7 @@
         hooks = {
           deadnix.enable = true;
           luacheck.enable = true;
-          nixfmt-rfc-style.enable = true;
+          nixfmt.enable = true;
           prettier.enable = true;
           shellcheck.enable = true;
           shfmt = {
@@ -32,7 +32,7 @@
         buildInputs = with pkgs; [
           deadnix
           nil
-          nixfmt-rfc-style
+          nixfmt
           statix
         ];
       };

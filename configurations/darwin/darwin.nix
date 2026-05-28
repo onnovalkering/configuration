@@ -60,18 +60,12 @@
       upgrade = true;
     };
 
-    taps = [
-      "anomalyco/tap"
-    ];
-
     brews = [
-      "anomalyco/tap/opencode"
       "ykman"
       "yubico-piv-tool"
     ];
 
     casks = [
-      "antigravity"
       "ghostty"
       "tailscale-app"
     ];

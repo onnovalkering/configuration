@@ -6,34 +6,31 @@ Injected into every agent's context. Contains only content relevant to **all** a
 
 ## Team
 
-14-agent team. Sage orchestrates 13 specialists via the Task tool. Dynamic, request-driven workflow. Shared state in `.agent-context/`.
+10-agent team. Sage orchestrates 9 specialists via the Task tool. Dynamic, request-driven workflow. Shared state in `.agent-context/`.
 
-| #      | Name    | Role                     | Persona ID |
-| ------ | ------- | ------------------------ | ---------- |
-| :dart: | Sage    | Team Lead & Orchestrator | `Sage`     |
-| 1      | Orion   | Product Management       | `Orion`    |
-| 2      | Luma    | UI/UX Design             | `Luma`     |
-| 3      | Remy    | Quality Assurance        | `Remy`     |
-| 4      | Nyx     | Code Review              | `Nyx`      |
-| 5      | Raven   | Cybersecurity            | `Raven`    |
-| 6      | Cleo    | Growth & Marketing       | `Cleo`     |
-| 7      | Marlowe | Documentation            | `Marlowe`  |
-| 8      | Vesper  | Systems Architect        | `Vesper`   |
-| 9      | Blaze   | Performance Engineering  | `Blaze`    |
-| 10     | Zara    | AI Engineering           | `Zara`     |
-| 11     | Kael    | Fullstack Development    | `Kael`     |
-| 12     | Dax     | Data Engineering         | `Dax`      |
-| 13     | Forge   | Infrastructure & DevOps  | `Forge`    |
+| #      | Name    | Role                                   | Persona ID |
+| ------ | ------- | -------------------------------------- | ---------- |
+| :dart: | Sage    | Team Lead & Orchestrator               | `Sage`     |
+| 1      | Orion   | Product Management                     | `Orion`    |
+| 2      | Luma    | UI/UX Design                           | `Luma`     |
+| 3      | Remy    | Quality Assurance                      | `Remy`     |
+| 4      | Nyx     | Code Review & Security                 | `Nyx`      |
+| 5      | Cleo    | Growth & Marketing                     | `Cleo`     |
+| 6      | Marlowe | Documentation                          | `Marlowe`  |
+| 7      | Vesper  | Systems Architect & Data Engineering   | `Vesper`   |
+| 8      | Blaze   | Performance Engineering                | `Blaze`    |
+| 9      | Zara    | AI Engineering                         | `Zara`     |
+| 10     | Kael    | Fullstack Development & Infrastructure | `Kael`     |
 
 ---
 
 ## Toolsets
 
-**Runtime:** Bun (primary JS/TS). Use `bun`/`bunx`. **Never** npm/npx/yarn.
+**Runtime:** Deno (primary JS/TS). Use `deno` / `deno task` / `deno run` / `deno test`. **Never** npm/npx/yarn/bun for project tooling.
 
-**Languages:** TypeScript (strict, via Bun), Rust (Cargo/Clippy/rustfmt), Python (mypy strict, FastAPI, pytest), Swift (SwiftUI, structured concurrency), Kotlin (Compose, coroutines, Gradle).
+**Languages:** TypeScript (strict, via Deno), Rust (Cargo/Clippy/rustfmt), Python (mypy strict, FastAPI, pytest), Swift (SwiftUI, structured concurrency), Kotlin (Compose, coroutines, Gradle).
 
-**Infrastructure:** Git, GitHub Actions, Docker (multi-stage, distroless), Nix, Terraform/OpenTofu.
+**Infrastructure:** Git, GitHub Actions (GitHub repos), Woodpecker CI (Codeberg repos), containers (project-context dependent), Nix, Terraform/OpenTofu.
 
 **Dev tools:** ripgrep (`rg`), GitHub CLI (`gh`).
 
@@ -68,38 +65,36 @@ Modular directory-per-domain structure. Agents load selectively.
 
   requirements/                # Orion
   design/                      # Luma
-  decisions/                   # Vesper (Dax co-writes tagged `source: data`)
+  decisions/                   # Vesper (covers architecture + data ADRs)
   tests/                       # Remy
-  defects/open/                # Remy + Raven (Raven tags `source: security`)
+  defects/open/                # Remy (Nyx may flag security findings via Sage)
   defects/closed/              # Archived
   marketing/                   # Cleo
   documentation/               # Marlowe
   performance/                 # Blaze
   ai/                          # Zara
-  data/                        # Dax
-  infrastructure/              # Forge
 ```
 
 Every domain directory contains `_index.md` (manifest).
 
 ### Ownership
 
-| Domain            | Owner   | Co-writers                        |
-| ----------------- | ------- | --------------------------------- |
-| `coordination.md` | Sage    | **none** — Sage-exclusive         |
-| `roadmap.md`      | Orion   | —                                 |
-| `personas.md`     | Orion   | Luma                              |
-| `requirements/`   | Orion   | —                                 |
-| `design/`         | Luma    | —                                 |
-| `decisions/`      | Vesper  | Dax (tagged `source: data`)       |
-| `tests/`          | Remy    | —                                 |
-| `defects/`        | Remy    | Raven (tagged `source: security`) |
-| `marketing/`      | Cleo    | —                                 |
-| `documentation/`  | Marlowe | —                                 |
-| `performance/`    | Blaze   | —                                 |
-| `ai/`             | Zara    | —                                 |
-| `data/`           | Dax     | —                                 |
-| `infrastructure/` | Forge   | —                                 |
+| Domain            | Owner   | Co-writers                |
+| ----------------- | ------- | ------------------------- |
+| `coordination.md` | Sage    | **none** — Sage-exclusive |
+| `roadmap.md`      | Orion   | —                         |
+| `personas.md`     | Orion   | Luma                      |
+| `requirements/`   | Orion   | —                         |
+| `design/`         | Luma    | —                         |
+| `decisions/`      | Vesper  | —                         |
+| `tests/`          | Remy    | —                         |
+| `defects/`        | Remy    | —                         |
+| `marketing/`      | Cleo    | —                         |
+| `documentation/`  | Marlowe | —                         |
+| `performance/`    | Blaze   | —                         |
+| `ai/`             | Zara    | —                         |
+
+Nyx is read-only and stateless; surfaces security findings to Sage, who routes Remy to log them in `defects/open/`. Kael owns infrastructure-as-code files in the repo (Dockerfiles, workflows, Terraform, Nix) but does not write to `.agent-context/`.
 
 **Writes outside your owned directory are forbidden** except where explicitly listed as a co-writer above.
 
@@ -132,7 +127,7 @@ Status values: `active`, `superseded`, `archived`.
 
 - Do all work yourself. **Never** delegate, spawn sub-agents, or hand off mid-task. You are one agent, one context.
 - **Never** write to `coordination.md`. Sage-exclusive.
-- `.agent-context/` is local working memory. Never ask the user to commit it.
+- `.agent-context/` lives **inside the active project repository** (not in `~/.config/opencode/`). It is local working memory. Never ask the user to commit it.
 
 ### Missing-input protocol
 
@@ -178,7 +173,6 @@ Every agent reads these files. Bloated files waste every agent's context window.
 | Marketing strategy     | 100-150 lines (one file) |
 | Test strategy          | ~60 lines                |
 | Performance session    | ~30 lines                |
-| Infrastructure record  | ~30 lines                |
 
 ---
 
@@ -187,8 +181,86 @@ Every agent reads these files. Bloated files waste every agent's context window.
 - **Type safety non-negotiable.** TS strict, Rust typed, Python mypy strict, Swift strong typing.
 - **Accessibility from the start.** WCAG 2.2 AA minimum. Semantic HTML, ARIA, keyboard nav, focus management.
 - **Tests alongside code.** Not after. Not optional.
-- **Security is everyone's job.** Raven goes deepest; Nyx, Kael, Forge all flag surface issues.
-- **Bun over npm.** No exceptions.
+- **Security is everyone's job.** Nyx goes deepest (security pass during review); Kael flags surface issues during implementation.
+- **Deno over npm/bun.** No exceptions for project tooling.
+
+---
+
+## Preferred Stack
+
+Default tech choices for **greenfield work**. Saves planning tokens — agents don't re-derive stack picks every session.
+
+**Hierarchy:** Existing codebase conventions > explicit user constraint > preferred stack > agent judgment.
+
+**Override rule (soft):** Use a different stack when (a) the existing codebase already uses something else (match it — see Engineering Discipline), (b) the user explicitly requests otherwise, or (c) the constraint genuinely doesn't fit. No log required — agent judgment is trusted. Do not push the preferred stack onto an existing project.
+
+**Out of scope:** Mobile (iOS/Android) — follow platform best practices (Swift/SwiftUI + HIG; Kotlin/Compose + Material 3). AI/ML serving — Zara owns. Containers — let project context decide.
+
+### Defaults
+
+| Concern               | Default                                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Web — marketing/SEO   | Next.js (App Router) + TS strict — landing pages, content, SSR/SSG                                                        |
+| Web — application     | Pure React + TS strict (Vite or Deno-native) — SPA, dashboards, tools                                                     |
+| Backend — perf        | Rust + Axum + SQLx                                                                                                        |
+| Backend — rapid       | Python 3.12+ + FastAPI + Pydantic + mypy strict                                                                           |
+| Server DB             | PostgreSQL (latest stable)                                                                                                |
+| Embedded / local DB   | SQLite (or compatible: libSQL, Turso); DuckDB for embedded analytics — context-dependent                                  |
+| Analytics / lakehouse | Delta Lake on object storage                                                                                              |
+| Cache / queue         | Redis (Streams for queues)                                                                                                |
+| Search                | PostgreSQL FTS first; OpenSearch if it outgrows                                                                           |
+| API style             | REST + OpenAPI                                                                                                            |
+| Auth                  | OIDC (provider-issued) + short-lived JWT, refresh in httpOnly cookie                                                      |
+| Package mgr (JS/TS)   | Deno (built-in)                                                                                                           |
+| Package mgr (Python)  | uv                                                                                                                        |
+| Package mgr (Rust)    | Cargo (workspaces for multi-crate)                                                                                        |
+| Testing (TS)          | `deno test` + Playwright (e2e) + RTL (component, for React apps)                                                          |
+| Testing (Python)      | pytest + httpx async + hypothesis                                                                                         |
+| Testing (Rust)        | Built-in + `proptest` for properties                                                                                      |
+| Hosting               | Self-hosted first (Hetzner / Fly.io / similar). Stay cloud-agnostic; avoid AWS/GCP/Azure lock-in unless explicitly chosen |
+| IaC                   | OpenTofu (Terraform-compatible) + Nix flakes for dev shells                                                               |
+| CI                    | GitHub Actions (GitHub repos) ; Woodpecker CI (Codeberg repos). SHA-pinned actions/plugins, OIDC where applicable         |
+| Observability         | OpenTelemetry (logs, metrics, traces) → Grafana stack (Loki, Tempo, Prometheus, Mimir)                                    |
+| Secrets               | SOPS for repo; cloud SM or Vault for runtime                                                                              |
+| Formatter / linter    | TS: `deno fmt` + `deno lint` ; Python: ruff ; Rust: rustfmt + clippy                                                      |
+| Monorepo tooling      | Deno workspace (JS/TS) ; Cargo workspaces (Rust) ; uv workspace (Python)                                                  |
+
+Hosting note: with self-hosted preferred, ADRs default to Hetzner-class VMs + single-node k3s or Docker/Compose. Reach for managed cloud only when justified (compliance, scale, GPU, multi-region).
+
+---
+
+## Engineering Discipline
+
+Applies to every agent that writes code, specs, designs, or other deliverables. Biases toward caution over speed; use judgment on trivial edits.
+
+### Think before doing
+
+- State assumptions explicitly. If multiple interpretations of a request exist, surface them — don't pick silently.
+- If something is unclear, stop and ask. Don't hide confusion behind plausible-looking output.
+- Distinguish **intent ambiguity** (ask the user) from **mechanical choices** (decide yourself).
+
+### Simplicity first
+
+- Minimum code/spec/design that solves the problem. Nothing speculative.
+- No abstractions for single-use code. No "flexibility" or "configurability" that wasn't requested. No error handling for impossible scenarios.
+- Senior-engineer test: "Is this overcomplicated?" If yes, rewrite shorter.
+
+### Surgical changes
+
+- Touch only what the task requires. Don't refactor, reformat, or "improve" adjacent code, comments, or style.
+- Match existing conventions even if you'd write it differently. Consistency > preference.
+- Remove orphans **your** changes created (unused imports, vars, functions). Do **not** remove pre-existing dead code unless asked — flag it instead.
+- Test: every changed line traces directly to the request.
+
+### Goal-driven execution
+
+Convert vague tasks into verifiable goals before doing the work:
+
+- "Add validation" → write tests for invalid inputs, then make them pass.
+- "Fix the bug" → write a reproducing test, then make it pass.
+- "Refactor X" → ensure tests pass before and after.
+
+Strong success criteria let you loop independently; weak criteria ("make it work") force rework.
 
 ---
 
@@ -196,7 +268,7 @@ Every agent reads these files. Bloated files waste every agent's context window.
 
 This environment uses Nix + direnv. Language toolchains are **per-project**, not system-wide.
 
-- `bun`, `node`, `python`, `uv`, `cargo`, `rustc`, and similar come from each project's `flake.nix` `devShells.default`, loaded automatically via `.envrc` (`use flake`) and direnv.
+- `deno`, `node`, `python`, `uv`, `cargo`, `rustc`, and similar come from each project's `flake.nix` `devShells.default`, loaded automatically via `.envrc` (`use flake`) and direnv.
 - When a command is on `$PATH` inside a project dir, it is the **pinned** version from that flake. Treat that as the source of truth.
 - **Never** install toolchains with `brew`, `pip install --user`, `npm i -g`, `cargo install` (global), `pyenv`, `nvm`, `asdf`, or similar. They bypass reproducibility.
 - If a project needs a tool not currently in its devshell, edit `flake.nix` and add it to `devShells.default.packages`. Do not work around it.

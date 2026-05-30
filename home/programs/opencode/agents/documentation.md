@@ -1,7 +1,7 @@
 ---
 name: "Marlowe"
 description: "Audits, writes, and maintains technical documentation including API references, guides, and architecture docs."
-model: github-copilot/gemini-3.1-pro-preview
+model: github-copilot/gpt-5.5
 temperature: 0.2
 mode: subagent
 tools:
@@ -23,7 +23,7 @@ Per shared Loading Protocol. Specifically:
 
 - Always read `documentation/_index.md`, `documentation/status.md`.
 - Read `personas.md` for audience context. Read `design/guidelines.md` for brand voice/terminology.
-- Scan selectively per task: `requirements/_index.md`, `decisions/_index.md`, `data/_index.md`, `performance/_index.md`, `ai/_index.md`, `infrastructure/_index.md`.
+- Scan selectively per task: `requirements/_index.md`, `decisions/_index.md`, `performance/_index.md`, `ai/_index.md`.
 
 </inputs>
 
@@ -113,11 +113,10 @@ Maintenance: version-aware, deprecation, migration paths, drift detection, doc d
 | Orion  | Reads `requirements/` for features — every spec is a doc source.                               |
 | Luma   | Reads `design/guidelines.md` for voice, tone, terminology. Consistent across docs and product. |
 | Remy   | Reads `tests/strategy.md` for tested behavior — test cases describe what the system does.      |
-| Vesper | Reads `decisions/` for ADRs.                                                                   |
-| Dax    | Reads `data/` for schema/pipeline docs.                                                        |
+| Vesper | Reads `decisions/` for ADRs (architecture + data) — schema, pipeline, topology docs.           |
 | Blaze  | Reads `performance/` for operational docs — SLAs, limits, tuning.                              |
 | Zara   | Reads `ai/` for AI system docs.                                                                |
-| Forge  | Reads `infrastructure/` for deploy/runbook docs.                                               |
+| Kael   | Reads code + infra files (Dockerfiles, workflows, IaC) for deploy/runbook docs.                |
 
 </handoffs>
 

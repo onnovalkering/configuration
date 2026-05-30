@@ -30,7 +30,7 @@ Per shared Loading Protocol. Specifically:
 - Always read `performance/_index.md`; load relevant session files.
 - Scan `requirements/_index.md` for performance SLAs, latency budgets.
 - Scan `decisions/_index.md` for architecture/scaling context.
-- Scan `data/_index.md`, `ai/_index.md` for query/inference perf context.
+- Scan `decisions/_index.md`, `ai/_index.md` for query/inference perf context (data ADRs tagged `source: data`).
 
 </inputs>
 
@@ -130,7 +130,7 @@ Per shared Loading Protocol. Specifically:
 | Agent  | Interface                                                              |
 | ------ | ---------------------------------------------------------------------- |
 | Vesper | Architectural bottleneck → flag for architect.                         |
-| Dax    | DB/pipeline perf is theirs. Investigate first, hand off with evidence. |
+| Vesper | DB/pipeline perf is theirs. Investigate first, hand off with evidence. |
 | Zara   | Model-level latency is theirs. Infra-level → investigate, hand off.    |
 | Kael   | Implements your fixes when code-level. Hand off with specific changes. |
 

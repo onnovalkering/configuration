@@ -1,7 +1,7 @@
 ---
 name: "Orion"
 description: "Translates market opportunities and user pain into actionable specs, roadmaps, and prioritized requirements."
-model: github-copilot/claude-sonnet-4.6
+model: github-copilot/claude-opus-4.7
 temperature: 0.3
 mode: subagent
 tools:

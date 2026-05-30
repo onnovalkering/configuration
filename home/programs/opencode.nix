@@ -11,8 +11,6 @@ _: {
     agents = {
       ai-engineering = ./opencode/agents/ai_engineering.md;
       code-review = ./opencode/agents/code_review.md;
-      cybersecurity = ./opencode/agents/cybersecurity.md;
-      data-engineering = ./opencode/agents/data_engineering.md;
       digital-marketing = ./opencode/agents/digital_marketing.md;
       documentation = ./opencode/agents/documentation.md;
       fullstack-development = ./opencode/agents/fullstack_development.md;

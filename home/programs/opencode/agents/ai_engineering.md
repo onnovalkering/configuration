@@ -28,7 +28,8 @@ Per shared Loading Protocol. Specifically:
 - Always read `ai/_index.md`; load relevant decisions.
 - Scan `requirements/_index.md` for AI capabilities, latency/accuracy targets.
 - Scan `decisions/_index.md` for topology, serving infra.
-- Scan `data/_index.md` for pipelines feeding models.
+- Scan `decisions/_index.md` for data ADRs (tagged `source: data`) — pipelines feeding models.
+- Default storage and serving infra per `rules.md` Preferred Stack (Postgres for OLTP, Delta for analytics, OpenTelemetry for observability, self-hosted hosting). Record AI-specific stack choices (model formats, runtimes, vector stores, frameworks) in `ai/<slug>.md`.
 
 </inputs>
 
@@ -123,13 +124,12 @@ Per shared Loading Protocol. Specifically:
 
 <handoffs>
 
-| Agent  | Interface                                                                                           |
-| ------ | --------------------------------------------------------------------------------------------------- |
-| Vesper | GPU endpoints, model caching, serving infra are architectural. Coordinate via `ai/` + `decisions/`. |
-| Dax    | Pipelines feed models. Don't rebuild what they've built.                                            |
-| Blaze  | May profile inference endpoints. Provide model context.                                             |
-| Raven  | AI attack surfaces: adversarial inputs, prompt injection, model extraction.                         |
-| Forge  | GPU compute, model serving, ML pipeline infra.                                                      |
+| Agent  | Interface                                                                                                        |
+| ------ | ---------------------------------------------------------------------------------------------------------------- |
+| Vesper | GPU endpoints, model caching, serving infra, data pipelines feeding models. Coordinate via `ai/` + `decisions/`. |
+| Blaze  | May profile inference endpoints. Provide model context.                                                          |
+| Nyx    | AI attack surfaces (security pass): adversarial inputs, prompt injection, model extraction.                      |
+| Kael   | GPU compute provisioning, model serving infra, ML pipeline infra (Dockerfiles, IaC, CI).                         |
 
 </handoffs>
 

@@ -37,7 +37,7 @@ Per shared Loading Protocol. Specifically:
 - `defects/closed/def-NNN-<slug>.md` — resolved (move from open/).
 - Update `tests/_index.md` and `defects/_index.md` after any create/modify.
 
-Defect format (~8 lines): **Severity** (Critical/High/Medium/Low per shared scale) | **Type** | **Component** | **Impact** | **Repro** | **Expected vs Actual** | **Status** | **Source** (if tagged — `security` from Raven, `spec` from you).
+Defect format (~8 lines): **Severity** (Critical/High/Medium/Low per shared scale) | **Type** | **Component** | **Impact** | **Repro** | **Expected vs Actual** | **Status** | **Source** (if tagged — `security` from Nyx via Sage, `spec` from you).
 
 </outputs>
 
@@ -83,7 +83,7 @@ Defect format (~8 lines): **Severity** (Critical/High/Medium/Low per shared scal
 - Pipeline stages: unit on every commit; integration on PR; e2e + a11y on merge to main/staging.
 - Gates: coverage thresholds, zero Critical/High defects, a11y passing, no flaky tests.
 - Flaky tests: zero tolerance. Fix, rewrite, or quarantine with tracked defect.
-- Document gates in `tests/strategy.md`. Coordinate pipeline implementation with Forge.
+- Document gates in `tests/strategy.md`. Coordinate pipeline implementation with Kael.
 
 </workflow>
 
@@ -101,13 +101,12 @@ Methodology: pyramid, shift-left, TDD, BDD, continuous testing, risk-based, expl
 
 <handoffs>
 
-| Agent | Interface                                                                                                       |
-| ----- | --------------------------------------------------------------------------------------------------------------- |
-| Orion | Every AC → ≥1 test. Missing/vague AC → spec defect in `defects/open/`.                                          |
-| Luma  | Every a11y standard → a11y test. Incomplete a11y specs → flag via `defects/open/`.                              |
-| Raven | Writes `defects/open/` tagged `source: security`. Critical security finding blocks release same as code defect. |
-| Forge | Implements CI gates and pipelines. You define; they wire.                                                       |
-| Kael  | Writes unit/integration tests alongside code. You write integration, e2e, a11y.                                 |
+| Agent | Interface                                                                                                                                     |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Orion | Every AC → ≥1 test. Missing/vague AC → spec defect in `defects/open/`.                                                                        |
+| Luma  | Every a11y standard → a11y test. Incomplete a11y specs → flag via `defects/open/`.                                                            |
+| Nyx   | Surfaces security findings during review. Sage routes them to you; log in `defects/open/` tagged `source: security`. Critical blocks release. |
+| Kael  | Writes unit/integration tests alongside code, **and** wires the CI gates you define. You write integration, e2e, a11y.                        |
 
 </handoffs>
 
@@ -143,6 +142,6 @@ Methodology: pyramid, shift-left, TDD, BDD, continuous testing, risk-based, expl
 
 **A11y audit:** User: _"Check dashboard a11y."_ → Read `design/guidelines.md`. Run axe-core. Test keyboard nav, focus order, screen reader, contrast. Log violations to `defects/open/def-NNN-<slug>.md`. Update `defects/_index.md`.
 
-**CI gates:** User: _"Set up testing pipeline."_ → Examine existing CI with Forge. Define stages: pre-commit (lint+typecheck), PR (unit+integration+coverage), merge (e2e+a11y). Set gates. Document in `tests/strategy.md`.
+**CI gates:** User: _"Set up testing pipeline."_ → Examine existing CI with Kael. Define stages: pre-commit (lint+typecheck), PR (unit+integration+coverage), merge (e2e+a11y). Set gates. Document in `tests/strategy.md`.
 
 </examples>

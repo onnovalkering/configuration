@@ -1,4 +1,4 @@
-{ pkgs, ... }@args:
+{ pkgs, hostName, ... }:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -8,9 +8,7 @@
   system.stateVersion = 5;
 
   # Configure networking.
-  networking = {
-    inherit (args) hostName;
-  };
+  networking.hostName = hostName;
 
   # Configure security.
   security.pam.services.sudo_local = {

@@ -1,9 +1,6 @@
 {
   pkgs,
   hostName,
-  lib,
-  enableFirewall,
-  enableAutoUpgrade,
   ...
 }:
 {
@@ -31,8 +28,8 @@
   # Configure networking.
   networking = {
     inherit hostName;
-    firewall.enable = enableFirewall;
-    nftables.enable = enableFirewall;
+    firewall.enable = true;
+    nftables.enable = true;
   };
 
   # Configure security.
@@ -52,7 +49,7 @@
   };
 
   # Enable automatic upgrades of the system.
-  system.autoUpgrade = lib.mkIf enableAutoUpgrade {
+  system.autoUpgrade = {
     enable = true;
     allowReboot = true;
     flake = "github:onnovalkering/configuration";

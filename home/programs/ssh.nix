@@ -10,15 +10,15 @@ in
     # On macOS use the system provided SSH binary.
     package = if isDarwin then null else pkgs.openssh;
 
-    matchBlocks = {
+    settings = {
       "*" = { };
 
       "server-vesta" = {
-        forwardAgent = true;
+        ForwardAgent = true;
       };
 
       "server-vulcan" = {
-        forwardAgent = true;
+        ForwardAgent = true;
       };
     };
 

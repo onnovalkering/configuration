@@ -259,13 +259,6 @@ Format-on-save is enabled automatically (500ms timeout, LSP fallback).
 | `]c` / `[c` | n    | Next / previous class start    |
 | `]C` / `[C` | n    | Next / previous class end      |
 
-### Incremental Selection (Treesitter)
-
-| Key         | Mode | Action                            |
-| ----------- | ---- | --------------------------------- |
-| `<C-space>` | n    | Start/expand treesitter selection |
-| `<BS>`      | x    | Shrink treesitter selection       |
-
 ### Git Text Objects
 
 | Key  | Mode | Action          |
@@ -713,9 +706,8 @@ via         Select an argument
 2. **Never hold `j`/`k`.** Use `{count}j`, `<C-d>`, `{`, `}`, or Flash `s`.
 3. **Think in text objects.** Don't think "go to quote, delete, go to other quote, delete." Think `di"`.
 4. **Use `.` religiously.** Make one precise edit, then repeat it everywhere.
-5. **Use `<C-space>` for treesitter selection.** Start small, expand. Faster than visual mode.
-6. **Format on save is on.** Stop manually formatting.
-7. **Use `<leader>ff` not `:e`.** Fuzzy finding is always faster.
-8. **Harpoon your hot files.** If you visit a file more than twice, harpoon it.
-9. **Master `ci` and `di`.** `ciw`, `ci"`, `ci(`, `cit` — these are your bread and butter.
-10. **Let LSP do the work.** `gd` to jump in, `<C-o>` to jump back. `K` to read docs inline.
+5. **Format on save is on.** Stop manually formatting.
+6. **Use `<leader>ff` not `:e`.** Fuzzy finding is always faster.
+7. **Harpoon your hot files.** If you visit a file more than twice, harpoon it.
+8. **Master `ci` and `di`.** `ciw`, `ci"`, `ci(`, `cit` — these are your bread and butter.
+9. **Let LSP do the work.** `gd` to jump in, `<C-o>` to jump back. `K` to read docs inline.

@@ -16,8 +16,8 @@
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_6_18;
     kernelParams = [
-      "vm.swappiness=180"
       "vm.page-cluster=0"
+      "vm.swappiness=180"
     ];
 
     loader = {

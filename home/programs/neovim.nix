@@ -68,6 +68,7 @@
     extraPackages = with pkgs; [
       # Lua
       lua-language-server
+      stylua
 
       # Python
       basedpyright
@@ -94,18 +95,14 @@
       # YAML
       yaml-language-server
 
-      # Gleam
-      gleam
-
       # SQL
       sqls
 
       # Formatting
       prettier
-      stylua
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       require("config")
       require("lsp")
       require("plugins")

@@ -9,8 +9,7 @@
           "${self}/configurations/nixos/containers/homebridge.nix"
           "${self}/configurations/nixos/containers/jellyfin.nix"
           "${self}/configurations/nixos/containers/owndns.nix"
-          "${self}/configurations/nixos/services/openssh.nix"
-          "${self}/configurations/nixos/services/tailscale.nix"
+          "${self}/configurations/nixos/services"
         ];
       };
 }

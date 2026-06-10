@@ -6,8 +6,7 @@
         hostName = "server-vulcan";
         modules = [
           "${self}/hardware/custom-silverstone.nix"
-          "${self}/configurations/nixos/services/openssh.nix"
-          "${self}/configurations/nixos/services/tailscale.nix"
+          "${self}/configurations/nixos/services"
         ];
       };
 }

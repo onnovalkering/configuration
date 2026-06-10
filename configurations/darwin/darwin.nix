@@ -1,4 +1,4 @@
-{ pkgs, hostName, ... }:
+{ hostName, ... }:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -56,6 +56,7 @@
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
+      extraFlags = [ "--force-cleanup" ];
     };
 
     brews = [
@@ -66,14 +67,6 @@
     casks = [
       "ghostty"
       "tailscale-app"
-    ];
-  };
-
-  # Packages to be installed in system profile.
-  environment = with pkgs; {
-    systemPackages = [
-      bun
-      rustup
     ];
   };
 }

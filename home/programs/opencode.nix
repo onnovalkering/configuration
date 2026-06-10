@@ -1,8 +1,10 @@
-_: {
+{ pkgs-unstable, ... }:
+{
   programs.opencode = {
     enable = true;
+    package = pkgs-unstable.opencode;
 
-    rules = ./opencode/rules.md;
+    context = ./opencode/rules.md;
 
     commands = {
       generate-commit-message = ./opencode/commands/generate-commit-message.md;

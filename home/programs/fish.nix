@@ -1,4 +1,5 @@
-_: {
+{ config, ... }:
+{
   programs = {
     fish = {
       enable = true;
@@ -109,6 +110,10 @@ _: {
         '';
       };
     };
+
+    # fish enables man cache generation via mkDefault; it's a no-op (and warns)
+    # when man.package is null, as it is on Darwin (stateVersion >= 26.05).
+    man.generateCaches = config.programs.man.package != null;
   };
 
   catppuccin.fish.enable = true;

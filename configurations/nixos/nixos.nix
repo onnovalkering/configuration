@@ -1,15 +1,11 @@
-{
-  pkgs,
-  hostName,
-  ...
-}:
+{ hostName, ... }:
 {
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 
   # Configure kernel parameters.
   boot.kernel.sysctl = {
@@ -62,13 +58,5 @@
     automatic = true;
     dates = "Sat 22:00";
     options = "--delete-older-than 30d";
-  };
-
-  # Packages to be installed in system profile.
-  environment = with pkgs; {
-    systemPackages = [
-      git
-      vim
-    ];
   };
 }

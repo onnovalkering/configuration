@@ -1,6 +1,9 @@
 require("lualine").setup({
     options = {
-        theme = "catppuccin",
+        -- catppuccin/nvim renamed the bundled theme: the old "catppuccin"
+        -- file is gone, replaced by per-flavor files. Pinned to mocha to
+        -- match catppuccin.nvim.flavor and avoid load-order dependence.
+        theme = "catppuccin-mocha",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
         component_separators = { left = "", right = "" },

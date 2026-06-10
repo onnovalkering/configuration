@@ -1,7 +1,7 @@
 _: {
   virtualisation.oci-containers.containers = {
     ts-marimo = {
-      image = "tailscale/tailscale:v1.94.2";
+      image = "tailscale/tailscale:v1.98";
       hostname = "marimo";
       environment = {
         TS_HOSTNAME = "marimo";
@@ -19,7 +19,7 @@ _: {
     };
 
     marimo = {
-      image = "ghcr.io/marimo-team/marimo:0.20.2-sql";
+      image = "ghcr.io/marimo-team/marimo:0.23.9-sql";
       dependsOn = [ "ts-marimo" ];
       environment = {
         HOST = "127.0.0.1";

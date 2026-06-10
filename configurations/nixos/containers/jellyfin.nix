@@ -1,7 +1,7 @@
 _: {
   virtualisation.oci-containers.containers = {
     ts-jellyfin = {
-      image = "tailscale/tailscale:v1.94.2";
+      image = "tailscale/tailscale:v1.98";
       hostname = "jellyfin";
       environment = {
         TS_HOSTNAME = "jellyfin";
@@ -19,7 +19,7 @@ _: {
     };
 
     jellyfin = {
-      image = "jellyfin/jellyfin:2026022305";
+      image = "jellyfin/jellyfin:10.11";
       dependsOn = [ "ts-jellyfin" ];
       devices = [
         "/dev/dri/renderD128:/dev/dri/renderD128"

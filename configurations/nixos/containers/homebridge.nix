@@ -1,7 +1,7 @@
 _: {
   virtualisation.oci-containers.containers = {
     ts-homebridge = {
-      image = "tailscale/tailscale:v1.94.2";
+      image = "tailscale/tailscale:v1.98";
       hostname = "homebridge";
       environment = {
         TS_HOSTNAME = "homebridge";
@@ -26,7 +26,7 @@ _: {
     };
 
     homebridge = {
-      image = "homebridge/homebridge:2026-02-25";
+      image = "homebridge/homebridge:2026-06-05";
       dependsOn = [ "ts-homebridge" ];
       environment = {
         TZ = "Europe/Amsterdam";
@@ -40,7 +40,7 @@ _: {
     };
 
     mosquitto = {
-      image = "eclipse-mosquitto:2.0.22";
+      image = "eclipse-mosquitto:2.1-alpine";
       dependsOn = [ "ts-homebridge" ];
       volumes = [
         "mosquitto-data:/mosquitto/data"
@@ -52,7 +52,7 @@ _: {
     };
 
     zigbee2mqtt = {
-      image = "koenkk/zigbee2mqtt:2.1.3";
+      image = "koenkk/zigbee2mqtt:2.12";
       dependsOn = [ "mosquitto" ];
       environment = {
         TZ = "Europe/Amsterdam";

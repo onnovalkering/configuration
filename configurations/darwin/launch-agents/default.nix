@@ -1,2 +1,6 @@
-_: {
+{ ... }:
+{
+  imports = [
+    ./icloud-backup.nix
+  ];
 }

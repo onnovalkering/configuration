@@ -12,5 +12,6 @@ let
     '';
 in
 {
+  icloud-materialize = buildSwiftScript "icloud-materialize";
   usb-watcher = buildSwiftScript "usb-watcher";
 }
